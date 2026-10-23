@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   import-source:
-    # This bootstrap workflow is intentionally restricted to the repository owner.
+    # Restrict this privileged bootstrap workflow to the repository owner.
     if: github.actor == 'looloofy69-sketch'
     runs-on: ubuntu-latest
     steps:
@@ -26,10 +26,11 @@ jobs:
           test -s "$bundle"
 
           # Reject absolute paths, parent traversal, and unexpected top-level roots.
-          tar -tJf "$bundle" > "${RUNNER_TEMP}/minna-members.txt"
-          python3 - <<'PY'
+          tar -tJf "$bundle" > "$RUNNER_TEMP/minna-members.txt"
+          python3 - "$RUNNER_TEMP/minna-members.txt" <<'PY'
+          import sys
           from pathlib import Path
-          members = Path("${RUNNER_TEMP}/minna-members.txt").read_text().splitlines()
+          members = Path(sys.argv[1]).read_text().splitlines()
           allowed = ("minna/", "minna-field-kit/")
           if not members:
               raise SystemExit("Archive is empty")
@@ -41,13 +42,13 @@ jobs:
                   raise SystemExit(f"Unexpected archive root: {name!r}")
           PY
 
-          tmp="${RUNNER_TEMP}/minna-source-import"
+          tmp="$RUNNER_TEMP/minna-source-import"
           mkdir -p "$tmp"
           tar -xJf "$bundle" -C "$tmp"
           test -f "$tmp/minna/README.md"
           test -f "$tmp/minna-field-kit/README.md"
 
-          # Avoid overwriting an existing code import without an explicit review.
+          # Do not overwrite an existing code import without review.
           test ! -e ./minna
           test ! -e ./minna-field-kit
           cp -a "$tmp/minna" ./minna

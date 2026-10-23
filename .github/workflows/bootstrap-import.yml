@@ -1,44 +1,60 @@
-name: Bootstrap source import
+name: Import Minna source bundle
 
 on:
   push:
     branches: [main]
     paths:
-      - "source-archives/IMPORT_READY"
+      - "source-archives/minna-source.tar.xz"
 
 permissions:
   contents: write
 
 jobs:
   import-source:
-    if: github.actor != 'github-actions[bot]'
+    # This bootstrap workflow is intentionally restricted to the repository owner.
+    if: github.actor == 'looloofy69-sketch'
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: Verify and extract source bundle
+
+      - name: Validate and import bundle
         shell: bash
         run: |
           set -euo pipefail
-          test -s source-archives/IMPORT_READY
-          test -s source-archives/chunks/part-000.b64
+          bundle="source-archives/minna-source.tar.xz"
+          test -s "$bundle"
+
+          # Reject absolute paths, parent traversal, and unexpected top-level roots.
+          tar -tJf "$bundle" > "${RUNNER_TEMP}/minna-members.txt"
+          python3 - <<'PY'
+          from pathlib import Path
+          members = Path("${RUNNER_TEMP}/minna-members.txt").read_text().splitlines()
+          allowed = ("minna/", "minna-field-kit/")
+          if not members:
+              raise SystemExit("Archive is empty")
+          for name in members:
+              path = Path(name)
+              if path.is_absolute() or ".." in path.parts:
+                  raise SystemExit(f"Unsafe archive member: {name!r}")
+              if not name.startswith(allowed):
+                  raise SystemExit(f"Unexpected archive root: {name!r}")
+          PY
+
           tmp="${RUNNER_TEMP}/minna-source-import"
           mkdir -p "$tmp"
-          cat source-archives/chunks/part-*.b64 | tr -d '\r\n' | base64 --decode > "$tmp/minna-source.tar.xz"
-          tar -tJf "$tmp/minna-source.tar.xz"
-          mkdir -p "$tmp/extracted"
-          tar -xJf "$tmp/minna-source.tar.xz" -C "$tmp/extracted"
-          test -f "$tmp/extracted/minna/README.md"
-          test -f "$tmp/extracted/minna-field-kit/README.md"
-          # Preserve package roots and directory boundaries from the uploaded archives.
-          cp -a "$tmp/extracted/minna" ./minna
-          cp -a "$tmp/extracted/minna-field-kit" ./minna-field-kit
+          tar -xJf "$bundle" -C "$tmp"
+          test -f "$tmp/minna/README.md"
+          test -f "$tmp/minna-field-kit/README.md"
+
+          # Avoid overwriting an existing code import without an explicit review.
+          test ! -e ./minna
+          test ! -e ./minna-field-kit
+          cp -a "$tmp/minna" ./minna
+          cp -a "$tmp/minna-field-kit" ./minna-field-kit
           rm -rf source-archives
+
           git add -A
-          if git diff --cached --quiet; then
-            echo "No source changes to commit."
-            exit 0
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "chore: import Minna source packages"

@@ -12,7 +12,7 @@ The field kit contains interview guides and survey material in English, French, 
 
 ## Repository status
 
-The repository is initialized with documentation and a source-import workflow. **The two source-code directories have not yet been imported.** Download the combined source bundle and follow [docs/IMPORT_GUIDE.md](docs/IMPORT_GUIDE.md) to upload it once; GitHub Actions will validate and import the two directories.
+The two source packages have been imported into `main` as `minna/` and `minna-field-kit/`. GitHub Actions workflow run [#1](https://github.com/looloofy69-sketch/Minna-ai-/actions/runs/40009849712) completed successfully. The temporary `minna-source.tar.xz` transfer archive was removed after import. See [docs/REPOSITORY_STATUS.md](docs/REPOSITORY_STATUS.md) for what was and was not verified, and [docs/IMPORT_GUIDE.md](docs/IMPORT_GUIDE.md) for the import procedure.
 
 ## Principles
 

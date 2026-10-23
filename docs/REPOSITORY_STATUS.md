@@ -2,36 +2,35 @@
 
 **Checked:** 2026-10-23  
 **Repository:** https://github.com/looloofy69-sketch/Minna-ai-  
-**Status:** bootstrap documentation only; source import pending.
+**Status:** bootstrap documentation committed; source import is prepared but awaits one binary-file upload.
 
-## What was inspected
+## Current repository contents
 
-The GitHub repository was public but empty at inspection time: no commits, no branches, no files, and a default branch configured as `main`.
+The repository includes a project overview, this status record, an import guide, and a GitHub Actions workflow that will import the source archive. The actual `minna/` and `minna-field-kit/` source directories have not yet been committed.
 
-Two uploaded source archives are available in the working conversation:
+This session's GitHub integration can commit text files but did not provide a reliable direct binary-archive upload path. A chunked Base64 workaround proved unreliable, so the incomplete temporary chunks were removed rather than treated as a source import.
 
-- `minna-m0-corrected.zip` — 51 archive entries, containing the Kotlin M0 runtime, Gradle files, CI configuration, scripts, tests, and design/evidence documentation.
-- `minna-field-kit.zip` — 36 archive entries, containing multilingual survey content, generated questionnaires/codebook, Python analysis code, tests, and synthetic examples.
+## Next import step
 
-The intended import preserves the original top-level directories, `minna/` and `minna-field-kit/`, rather than merging similarly named files or flattening their histories.
+Create `source-archives/minna-source.tar.xz` in the repository by uploading the combined bundle linked in the conversation, then commit directly to `main` as `looloofy69-sketch`. The `.github/workflows/bootstrap-import.yml` workflow validates archive entries, checks the two package README files, imports the source directories, and removes the temporary archive. See [IMPORT_GUIDE.md](IMPORT_GUIDE.md).
 
-## Verification performed in this session
+## Existing verification evidence
 
 - M0 `scripts/minna_gates.py`: **passed** (all assertions passed).
 - M0 `scripts/minna_math.py`: **passed** (all assertions passed; output includes the exact-interval correction requiring n=106 for a worst-case ±10 percentage-point margin at 95%, rather than the earlier normal-approximation n=97).
-- Gradle/Kotlin build: **not run**; Gradle is not installed in this environment.
+- Gradle/Kotlin build: **not run**; Gradle was unavailable in the working environment.
 - Field-kit `python3 survey_cli.py selftest`: **not fully verified**; the command exceeded the available execution window after emitting test progress. No passing result is claimed.
 
-These checks validate only the commands listed above. They do not constitute full project acceptance.
+These checks validate only the listed commands. They do not constitute full project acceptance.
 
 ## Gates before field deployment
 
-1. Import the code and preserve source provenance.
-2. Run the field-kit test suite in a suitable execution environment and resolve any failures or timeouts.
-3. Run the standard Gradle build and Kotlin tests; the source README says this path had not yet been executed.
-4. Complete the field kit's stated human checks: native-speaker review of French and Arabic, cognitive pretest, consent/retention review, recruitment design, and the pre-registered decision thresholds.
-5. Keep the field kit marked as draft until those checks are actually complete.
+1. Import the code and preserve package boundaries.
+2. Run the field-kit test suite to completion and resolve failures or timeouts.
+3. Run the Gradle build and Kotlin tests in a suitable environment.
+4. Complete native-speaker review of French and Arabic, cognitive pretesting, consent/retention review, recruitment design, and pre-registered decision thresholds.
+5. Keep the field kit marked draft until those checks are actually complete.
 
 ## Truthfulness rule
 
-A status in an archive README is a claim made by that package, not automatically an independently reproduced result. Record the command, environment, and outcome for each new verification step.
+A status in a package README is a claim from that package, not automatically an independently reproduced result. Record the command, environment, and outcome for each verification step.

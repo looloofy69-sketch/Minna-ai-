@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "source-archives/minna-source.tar.xz"
+      - "source-archives/IMPORT_READY"
 
 permissions:
   contents: write
@@ -20,16 +20,19 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test -s source-archives/minna-source.tar.xz
-          tar -tJf source-archives/minna-source.tar.xz
+          test -s source-archives/IMPORT_READY
+          test -s source-archives/chunks/part-000.b64
           tmp="${RUNNER_TEMP}/minna-source-import"
           mkdir -p "$tmp"
-          tar -xJf source-archives/minna-source.tar.xz -C "$tmp"
-          test -f "$tmp/minna/README.md"
-          test -f "$tmp/minna-field-kit/README.md"
-          # Preserve package roots and directory boundaries from both uploaded ZIPs.
-          cp -a "$tmp/minna" ./minna
-          cp -a "$tmp/minna-field-kit" ./minna-field-kit
+          cat source-archives/chunks/part-*.b64 | tr -d '\r\n' | base64 --decode > "$tmp/minna-source.tar.xz"
+          tar -tJf "$tmp/minna-source.tar.xz"
+          mkdir -p "$tmp/extracted"
+          tar -xJf "$tmp/minna-source.tar.xz" -C "$tmp/extracted"
+          test -f "$tmp/extracted/minna/README.md"
+          test -f "$tmp/extracted/minna-field-kit/README.md"
+          # Preserve package roots and directory boundaries from the uploaded archives.
+          cp -a "$tmp/extracted/minna" ./minna
+          cp -a "$tmp/extracted/minna-field-kit" ./minna-field-kit
           rm -rf source-archives
           git add -A
           if git diff --cached --quiet; then

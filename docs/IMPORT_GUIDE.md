@@ -1,29 +1,18 @@
 # Import the Minna source packages
 
-The repository contains bootstrap documentation and an import workflow. The original source code is still in the two package archives; the repository connector cannot upload a binary archive directly.
+**Current state:** The source bundle was imported successfully on 2026-10-23. The `main` branch contains both `minna/` and `minna-field-kit/`. See [REPOSITORY_STATUS.md](REPOSITORY_STATUS.md) and [GitHub Actions run #1](https://github.com/looloofy69-sketch/Minna-ai-/actions/runs/40009849712).
 
-## One-time upload
+## How the import was performed
 
-1. Download `minna-source.tar.xz` from the ChatGPT conversation link provided with this guide.
-2. Open https://github.com/looloofy69-sketch/Minna-ai- on GitHub.
-3. Choose **Add file → Upload files**.
-4. Upload the file using this exact repository path: `source-archives/minna-source.tar.xz`.
-5. Commit the upload directly to `main` as the repository owner `looloofy69-sketch`.
+1. Upload the combined `minna-source.tar.xz` bundle to the repository root (the path must be exactly `minna-source.tar.xz`).
+2. Commit directly to `main` as the repository owner `looloofy69-sketch`.
+3. The workflow at `.github/workflows/bootstrap-import.yml` validates archive member paths and checks both package README files before extraction.
+4. On success, the workflow commits `minna/` and `minna-field-kit/` and deletes the transfer archive from the repository.
 
-The GitHub Actions workflow at `.github/workflows/bootstrap-import.yml` will validate the archive structure, confirm both package README files are present, then commit the extracted directories as `minna/` and `minna-field-kit/`. It removes the uploaded transfer archive from the repository during import.
-
-## Expected result
-
-- `minna/` contains the M0 runtime and its supporting files.
-- `minna-field-kit/` contains the user-research and survey-analysis package.
-- The import is one commit, preserving package boundaries and the source files within each archive.
-
-## Failure handling
-
-If the workflow fails, inspect **Actions → Import Minna source bundle** and read the failed step's logs. The workflow intentionally refuses to overwrite either directory if it already exists. It does not run the project tests during import.
+The workflow is deliberately restricted to commits triggered by the repository owner. It refuses to overwrite either source directory if that directory already exists. Do not rerun the import against an existing package tree without reviewing and changing that safeguard.
 
 ## Verification still required
 
 - Run the Gradle/Kotlin build and tests in a Java/Gradle environment.
 - Run the field-kit self-test suite to completion.
-- Complete native-speaker, cognitive-pretest, consent/privacy, and recruitment-design review before any live field study.
+- Complete native-speaker review, cognitive pretesting, consent/privacy, and recruitment-design review before any live field study.

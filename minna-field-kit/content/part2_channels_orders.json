@@ -1,0 +1,165 @@
+{
+  "questions": [
+    {
+      "id": "C1", "section": "C", "type": "multi", "required": true, "assumption": ["A-05"],
+      "purpose": "Which channels customers are reached on. Decides where an assistant has to work (messaging bot vs app vs both).",
+      "show_if": {"q": "S3", "in": ["regular", "occasional"]},
+      "text": {"en": "Which of these do you use to talk to customers? Select all that apply.",
+               "fr": "Lesquels utilisez-vous pour parler à vos clients ? Cochez tout ce qui s'applique.",
+               "ar": "أيّ مما يلي تستخدمينه للتواصل مع زبائنك؟ اختاري كل ما ينطبق."},
+      "options": [
+        {"code": "whatsapp", "en": "WhatsApp", "fr": "WhatsApp", "ar": "واتساب"},
+        {"code": "facebook", "en": "Facebook / Messenger", "fr": "Facebook / Messenger", "ar": "فيسبوك / ماسنجر"},
+        {"code": "instagram", "en": "Instagram", "fr": "Instagram", "ar": "إنستغرام"},
+        {"code": "tiktok", "en": "TikTok", "fr": "TikTok", "ar": "تيك توك"},
+        {"code": "viber", "en": "Viber", "fr": "Viber", "ar": "فايبر"},
+        {"code": "phone", "en": "Phone calls or SMS", "fr": "Appels ou SMS", "ar": "مكالمات أو رسائل نصية"},
+        {"code": "other", "en": "Other", "fr": "Autre", "ar": "أخرى"}
+      ]
+    },
+    {
+      "id": "C2", "section": "C", "type": "single", "required": true, "assumption": ["A-05"],
+      "purpose": "The one channel that carries most orders.",
+      "show_if": {"q": "S3", "in": ["regular", "occasional"]},
+      "text": {"en": "Which one do you use the most to take orders?",
+               "fr": "Lequel utilisez-vous le plus pour prendre les commandes ?",
+               "ar": "أيّها تستخدمينه أكثر لاستقبال الطلبات؟"},
+      "options": [
+        {"code": "whatsapp", "en": "WhatsApp", "fr": "WhatsApp", "ar": "واتساب"},
+        {"code": "facebook", "en": "Facebook / Messenger", "fr": "Facebook / Messenger", "ar": "فيسبوك / ماسنجر"},
+        {"code": "instagram", "en": "Instagram", "fr": "Instagram", "ar": "إنستغرام"},
+        {"code": "tiktok", "en": "TikTok", "fr": "TikTok", "ar": "تيك توك"},
+        {"code": "viber", "en": "Viber", "fr": "Viber", "ar": "فايبر"},
+        {"code": "phone", "en": "Phone calls or SMS", "fr": "Appels ou SMS", "ar": "مكالمات أو رسائل نصية"},
+        {"code": "other", "en": "Other", "fr": "Autre", "ar": "أخرى"}
+      ]
+    },
+    {
+      "id": "C3", "section": "C", "type": "multi", "required": true, "assumption": ["A-14"],
+      "purpose": "Languages and scripts customers' messages arrive in. Sets the mix of the dialect evaluation set (M1) and shows how large the Tamazight gap is.",
+      "show_if": {"q": "S3", "in": ["regular", "occasional"]},
+      "text": {"en": "Which languages or scripts do you use when writing to customers? Select all that apply.",
+               "fr": "Quelles langues ou écritures utilisez-vous pour écrire à vos clients ? Cochez tout ce qui s'applique.",
+               "ar": "ما اللغات أو الحروف التي تستخدمينها عند الكتابة إلى زبائنك؟ اختاري كل ما ينطبق."},
+      "options": [
+        {"code": "darija_arabic", "en": "Darija in Arabic letters", "fr": "Darija en lettres arabes", "ar": "الدارجة بالحروف العربية"},
+        {"code": "darija_latin", "en": "Darija in Latin letters (Arabizi)", "fr": "Darija en lettres latines (arabizi)", "ar": "الدارجة بالحروف اللاتينية (عربيزي)"},
+        {"code": "french", "en": "French", "fr": "Français", "ar": "الفرنسية"},
+        {"code": "msa", "en": "Standard Arabic", "fr": "Arabe standard", "ar": "العربية الفصحى"},
+        {"code": "english", "en": "English", "fr": "Anglais", "ar": "الإنجليزية"},
+        {"code": "tamazight", "en": "Tamazight", "fr": "Tamazight", "ar": "الأمازيغية"},
+        {"code": "other", "en": "Other", "fr": "Autre", "ar": "أخرى"}
+      ]
+    },
+    {
+      "id": "C4", "section": "C", "type": "multi", "required": false, "assumption": ["A-03"],
+      "purpose": "How orders and accounts are tracked today. Tells us what an assistant would replace or connect to.",
+      "show_if": {"q": "S3", "in": ["regular", "occasional"]},
+      "text": {"en": "How do you keep track of orders and money today? Select all that apply.",
+               "fr": "Comment suivez-vous aujourd'hui vos commandes et votre argent ? Cochez tout ce qui s'applique.",
+               "ar": "كيف تتابعين طلباتك وأموالك حاليا؟ اختاري كل ما ينطبق."},
+      "options": [
+        {"code": "paper", "en": "Paper notebook", "fr": "Cahier papier", "ar": "دفتر ورقي"},
+        {"code": "phone_notes", "en": "Phone notes or photos", "fr": "Notes du téléphone ou photos", "ar": "ملاحظات الهاتف أو الصور"},
+        {"code": "spreadsheet", "en": "Excel or Google Sheets", "fr": "Excel ou Google Sheets", "ar": "إكسل أو جوجل شيتس"},
+        {"code": "app", "en": "A business or accounting app", "fr": "Une application de gestion ou de comptabilité", "ar": "تطبيق للتسيير أو المحاسبة"},
+        {"code": "chat", "en": "The chat itself (WhatsApp / Instagram)", "fr": "La conversation elle-même (WhatsApp / Instagram)", "ar": "المحادثة نفسها (واتساب / إنستغرام)"},
+        {"code": "nothing", "en": "Nothing", "fr": "Rien", "ar": "لا شيء"}
+      ]
+    },
+    {
+      "id": "O1", "section": "O", "type": "single", "required": true, "assumption": ["A-03"],
+      "purpose": "Order volume. Tells whether the pain of manual order handling is large enough to pay for.",
+      "show_if": {"q": "S3", "in": ["regular", "occasional"]},
+      "text": {"en": "About how many orders do you handle in a typical week?",
+               "fr": "Environ combien de commandes traitez-vous dans une semaine typique ?",
+               "ar": "تقريبا كم طلبا تعالجين في أسبوع عادي؟"},
+      "options": [
+        {"code": "w0_5", "en": "0 to 5", "fr": "0 à 5", "ar": "من 0 إلى 5"},
+        {"code": "w6_20", "en": "6 to 20", "fr": "6 à 20", "ar": "من 6 إلى 20"},
+        {"code": "w21_50", "en": "21 to 50", "fr": "21 à 50", "ar": "من 21 إلى 50"},
+        {"code": "w51_plus", "en": "More than 50", "fr": "Plus de 50", "ar": "أكثر من 50"}
+      ]
+    },
+    {
+      "id": "O2", "section": "O", "type": "multi", "required": true, "assumption": ["A-07"],
+      "purpose": "How goods reach customers. 'A delivery company' opens the courier questions; it is the population the courier connector would serve.",
+      "show_if": {"q": "S3", "in": ["regular", "occasional"]},
+      "text": {"en": "How do your products reach customers? Select all that apply.",
+               "fr": "Comment vos produits parviennent-ils à vos clients ? Cochez tout ce qui s'applique.",
+               "ar": "كيف تصل منتجاتك إلى الزبائن؟ اختاري كل ما ينطبق."},
+      "options": [
+        {"code": "hand", "en": "I deliver myself or the customer collects", "fr": "Je livre moi-même ou le client vient chercher", "ar": "أوصل بنفسي أو يأتي الزبون ليستلم"},
+        {"code": "courier", "en": "A delivery company", "fr": "Une société de livraison", "ar": "شركة توصيل"},
+        {"code": "post", "en": "Algérie Poste", "fr": "Algérie Poste", "ar": "بريد الجزائر"},
+        {"code": "driver", "en": "A bus / taxi / private driver", "fr": "Un bus / un taxi / un chauffeur privé", "ar": "حافلة / سيارة أجرة / سائق خاص"},
+        {"code": "other", "en": "Other", "fr": "Autre", "ar": "أخرى"}
+      ]
+    },
+    {
+      "id": "O3", "section": "O", "type": "multi", "required": false, "assumption": ["A-07"],
+      "purpose": "Which couriers are in use. Decides which connector to build first. Names are only the two documented in the register plus free text.",
+      "show_if": {"q": "O2", "in": ["courier"]},
+      "text": {"en": "Which delivery companies do you use? Select all that apply.",
+               "fr": "Quelles sociétés de livraison utilisez-vous ? Cochez tout ce qui s'applique.",
+               "ar": "ما شركات التوصيل التي تستخدمينها؟ اختاري كل ما ينطبق."},
+      "options": [
+        {"code": "yalidine", "en": "Yalidine", "fr": "Yalidine", "ar": "ياليدين"},
+        {"code": "maystro", "en": "Maystro", "fr": "Maystro", "ar": "مايسترو"},
+        {"code": "other", "en": "Another delivery company", "fr": "Une autre société de livraison", "ar": "شركة توصيل أخرى"}
+      ]
+    },
+    {
+      "id": "O4", "section": "O", "type": "single", "required": true, "assumption": ["A-08", "A-09"],
+      "purpose": "Cash on delivery vs prepaid. Self-reported; the real rate must come from pilot data.",
+      "show_if": {"q": "S3", "in": ["regular", "occasional"]},
+      "text": {"en": "How do most of your customers pay?",
+               "fr": "Comment la plupart de vos clients paient-ils ?",
+               "ar": "كيف يدفع معظم زبائنك؟"},
+      "options": [
+        {"code": "cod_mostly", "en": "Mostly cash on delivery", "fr": "Surtout en espèces à la livraison", "ar": "غالبا نقدا عند الاستلام"},
+        {"code": "mixed", "en": "About half and half", "fr": "Environ moitié-moitié", "ar": "تقريبا النصف بالنصف"},
+        {"code": "prepaid_mostly", "en": "Mostly in advance (CCP / BaridiMob / card)", "fr": "Surtout à l'avance (CCP / BaridiMob / carte)", "ar": "غالبا مسبقا (CCP / بريدي موب / بطاقة)"},
+        {"code": "other", "en": "Other", "fr": "Autre", "ar": "أخرى"}
+      ]
+    },
+    {
+      "id": "O5a", "section": "O", "type": "number", "required": false, "assumption": ["A-08"],
+      "purpose": "Denominator for the recalled refusal rate. Recall of the last 20 parcels is cheaper to remember than a percentage.",
+      "show_if": {"q": "O2", "in": ["courier"]},
+      "range": [1, 20],
+      "text": {"en": "Think of the last 20 parcels you sent with a delivery company. If you sent fewer than 20, count all of them. How many parcels are you counting?",
+               "fr": "Pensez aux 20 derniers colis envoyés avec une société de livraison. Si vous en avez envoyé moins de 20, comptez-les tous. Combien de colis comptez-vous ?",
+               "ar": "فكري في آخر 20 طردا أرسلتيها مع شركة توصيل. إذا أرسلت أقل من 20 فاحسبيها كلها. كم طردا تحسبين؟"},
+      "options": []
+    },
+    {
+      "id": "O5b", "section": "O", "type": "number", "required": false, "assumption": ["A-08"],
+      "purpose": "Numerator: parcels refused or never collected. Must not exceed O5a; violations are listed in the report.",
+      "show_if": {"q": "O2", "in": ["courier"]},
+      "range": [0, 20],
+      "text": {"en": "Of those parcels, how many were refused or never collected by the customer?",
+               "fr": "Parmi ces colis, combien ont été refusés ou jamais retirés par le client ?",
+               "ar": "من بين هذه الطرود، كم طردا رفضه الزبون أو لم يستلمه أبدا؟"},
+      "options": []
+    },
+    {
+      "id": "O6", "section": "O", "type": "multi", "max_select": 2, "required": true, "assumption": ["A-03"],
+      "purpose": "The tasks that hurt most. This is the ranking that decides what the first job (M2) should be; interviews explain it.",
+      "show_if": {"q": "S3", "in": ["regular", "occasional"]},
+      "text": {"en": "Which tasks take the most of your time or cause the most problems? Choose up to 2.",
+               "fr": "Quelles tâches vous prennent le plus de temps ou vous posent le plus de problèmes ? Choisissez 2 au maximum.",
+               "ar": "ما المهام التي تأخذ أكثر وقتك أو تسبب لك أكبر المشاكل؟ اختاري مهمتين على الأكثر."},
+      "options": [
+        {"code": "replying", "en": "Replying to customer messages", "fr": "Répondre aux messages des clients", "ar": "الرد على رسائل الزبائن"},
+        {"code": "confirming", "en": "Confirming orders and details with customers", "fr": "Confirmer les commandes et les détails avec les clients", "ar": "تأكيد الطلبات والتفاصيل مع الزبائن"},
+        {"code": "packing", "en": "Preparing and packing orders", "fr": "Préparer et emballer les commandes", "ar": "تحضير الطلبات وتغليفها"},
+        {"code": "parcels", "en": "Creating parcels and labels with the delivery company", "fr": "Créer les colis et les étiquettes chez la société de livraison", "ar": "إنشاء الطرود والملصقات لدى شركة التوصيل"},
+        {"code": "tracking", "en": "Tracking parcels and calling customers", "fr": "Suivre les colis et rappeler les clients", "ar": "تتبع الطرود والاتصال بالزبائن"},
+        {"code": "records", "en": "Keeping records and accounts", "fr": "Tenir les registres et la comptabilité", "ar": "مسك السجلات والحسابات"},
+        {"code": "marketing", "en": "Posting and promoting my products", "fr": "Publier et promouvoir mes produits", "ar": "النشر والترويج لمنتجاتي"},
+        {"code": "other", "en": "Other", "fr": "Autre", "ar": "أخرى"}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "questions": [
+    {
+      "id": "M1", "section": "M", "type": "single", "required": true, "assumption": ["A-03", "A-04"],
+      "purpose": "Stated interest after the neutral concept card. Stated interest overstates real use; it is a screen, never evidence of demand. Pilot retention decides.",
+      "show_if": {"q": "S3", "in": ["regular", "occasional", "planning"]},
+      "text": {"en": "Imagine an assistant on your phone that does tasks like these for you, but only after you approve each step. How interested would you be in using it?",
+               "fr": "Imaginez un assistant sur votre téléphone qui fait ce genre de tâches pour vous, mais seulement après que vous avez approuvé chaque étape. Dans quelle mesure seriez-vous intéressée ?",
+               "ar": "تخيلي مساعدا على هاتفك ينجز لك مهام مثل هذه، لكن فقط بعد أن توافقي على كل خطوة. ما مدى اهتمامك باستخدامه؟"},
+      "options": [
+        {"code": "1", "en": "1 (not interested)", "fr": "1 (pas intéressée)", "ar": "1 (غير مهتمة)"},
+        {"code": "2", "en": "2", "fr": "2", "ar": "2"},
+        {"code": "3", "en": "3", "fr": "3", "ar": "3"},
+        {"code": "4", "en": "4", "fr": "4", "ar": "4"},
+        {"code": "5", "en": "5 (very interested)", "fr": "5 (très intéressée)", "ar": "5 (مهتمة جدا)"}
+      ]
+    },
+    {
+      "id": "M2", "section": "M", "type": "multi", "required": true, "assumption": ["A-09", "A-10"],
+      "purpose": "Capabilities respondents would refuse even with approval. Tests the v1 choice of no money movement and sizes the consent burden of customer data.",
+      "show_if": {"q": "S3", "in": ["regular", "occasional", "planning"]},
+      "text": {"en": "Even with your approval each time, which of these would you NOT want an assistant to do? Select all that apply.",
+               "fr": "Même avec votre approbation à chaque fois, lesquelles de ces actions ne voudriez-vous PAS qu'un assistant fasse ? Cochez tout ce qui s'applique.",
+               "ar": "حتى مع موافقتك في كل مرة، أيّ مما يلي لا تريدين أن يقوم به المساعد؟ اختاري كل ما ينطبق."},
+      "options": [
+        {"code": "send_messages", "en": "Send messages to my customers", "fr": "Envoyer des messages à mes clients", "ar": "إرسال رسائل إلى زبائني"},
+        {"code": "create_parcels", "en": "Create parcels with a delivery company", "fr": "Créer des colis chez une société de livraison", "ar": "إنشاء طرود لدى شركة توصيل"},
+        {"code": "see_numbers", "en": "See my customers' phone numbers and addresses", "fr": "Voir les numéros de téléphone et les adresses de mes clients", "ar": "الاطلاع على أرقام هواتف زبائني وعناوينهم"},
+        {"code": "handle_money", "en": "Handle money or payments", "fr": "Gérer de l'argent ou des paiements", "ar": "التعامل مع المال أو المدفوعات"},
+        {"code": "post_social", "en": "Post on my business pages", "fr": "Publier sur mes pages professionnelles", "ar": "النشر على صفحاتي التجارية"},
+        {"code": "read_contacts", "en": "Read the contacts on my phone", "fr": "Lire les contacts de mon téléphone", "ar": "قراءة جهات الاتصال في هاتفي"},
+        {"code": "allow_all", "en": "I would allow all of these", "fr": "J'autoriserais tout cela", "ar": "أسمح بكل ما سبق"}
+      ]
+    },
+    {
+      "id": "M3", "section": "M", "type": "single", "required": true, "assumption": ["A-10"],
+      "purpose": "Attitude to cloud processing abroad after removal of names and numbers. An attitude, not legal consent: Art. 44/45 questions stay with counsel (D3).",
+      "show_if": {"q": "S3", "in": ["regular", "occasional", "planning"]},
+      "text": {"en": "If names and phone numbers were removed first, would you accept an online AI service in another country processing your messages?",
+               "fr": "Si les noms et les numéros de téléphone étaient d'abord supprimés, accepteriez-vous qu'un service d'IA en ligne situé dans un autre pays traite vos messages ?",
+               "ar": "إذا تم حذف الأسماء وأرقام الهواتف أولا، هل تقبلين أن تعالج خدمة ذكاء اصطناعي عبر الانترنت في بلد آخر رسائلك؟"},
+      "options": [
+        {"code": "yes", "en": "Yes", "fr": "Oui", "ar": "نعم"},
+        {"code": "depends", "en": "It depends on the service", "fr": "Cela dépend du service", "ar": "يعتمد على الخدمة"},
+        {"code": "no", "en": "No", "fr": "Non", "ar": "لا"},
+        {"code": "unknown", "en": "I do not know", "fr": "Je ne sais pas", "ar": "لا أعرف"}
+      ]
+    },
+    {
+      "id": "M4", "section": "M", "type": "multi", "required": false, "assumption": ["A-04", "A-10"],
+      "purpose": "Who would be trusted to run it. Feeds the distribution and partnership choice (A-04: the advantage has to come from trust or distribution).",
+      "show_if": {"q": "S3", "in": ["regular", "occasional", "planning"]},
+      "text": {"en": "Who would you trust to run a service like this? Select all that apply.",
+               "fr": "À qui feriez-vous confiance pour gérer un tel service ? Cochez tout ce qui s'applique.",
+               "ar": "لمن تثقين في إدارة خدمة مثل هذه؟ اختاري كل ما ينطبق."},
+      "options": [
+        {"code": "dz_company", "en": "A company based in Algeria", "fr": "Une entreprise basée en Algérie", "ar": "شركة مقرها الجزائر"},
+        {"code": "foreign_company", "en": "A foreign company", "fr": "Une entreprise étrangère", "ar": "شركة أجنبية"},
+        {"code": "state", "en": "A public institution or state programme", "fr": "Une institution publique ou un programme de l'État", "ar": "مؤسسة عمومية أو برنامج حكومي"},
+        {"code": "association", "en": "A women's association or NGO", "fr": "Une association de femmes ou une ONG", "ar": "جمعية نسائية أو منظمة غير حكومية"},
+        {"code": "nobody", "en": "Nobody", "fr": "Personne", "ar": "لا أحد"}
+      ]
+    },
+    {
+      "id": "W1", "section": "W", "type": "money", "required": false, "assumption": ["A-03"],
+      "purpose": "Current monthly spend on mobile data and phone credit (DZD). A revealed baseline that bounds what a subscription can cost.",
+      "show_if": {"q": "S3", "in": ["regular", "occasional"]},
+      "text": {"en": "About how much do you spend each month on mobile data and phone credit? (DZD)",
+               "fr": "Environ combien dépensez-vous chaque mois en internet mobile et en crédit téléphonique ? (DZD)",
+               "ar": "تقريبا كم تنفقين كل شهر على الانترنت والرصيد؟ (دج)"},
+      "options": []
+    },
+    {
+      "id": "W2", "section": "W", "type": "single", "required": false, "assumption": ["A-03", "A-04"],
+      "purpose": "Stated acceptance at ONE randomly assigned price. Compare cells only through the exact test; read 'maybe' as not-yes. Stated willingness to pay overstates real payment; the pilot's actual payments are the evidence.",
+      "show_if": {"q": "S3", "in": ["regular", "occasional"]},
+      "text": {"en": "If such an assistant cost {PRICE} DZD per month, would you subscribe?",
+               "fr": "Si un tel assistant coûtait {PRICE} DZD par mois, vous abonneriez-vous ?",
+               "ar": "لو كان مثل هذا المساعد يكلف {PRICE} دج شهريا، هل ستشتركين فيه؟"},
+      "options": [
+        {"code": "yes", "en": "Yes", "fr": "Oui", "ar": "نعم"},
+        {"code": "maybe", "en": "Maybe", "fr": "Peut-être", "ar": "ربما"},
+        {"code": "no", "en": "No", "fr": "Non", "ar": "لا"}
+      ]
+    },
+    {
+      "id": "W3", "section": "W", "type": "single", "required": false, "assumption": ["A-03"],
+      "purpose": "Pricing shape: pay per job (for example per parcel) or monthly.",
+      "show_if": {"q": "S3", "in": ["regular", "occasional"]},
+      "text": {"en": "Would you prefer to pay only when the assistant does a job for you (for example per parcel) instead of a monthly fee?",
+               "fr": "Préféreriez-vous payer seulement quand l'assistant fait une tâche pour vous (par exemple par colis) plutôt qu'un abonnement mensuel ?",
+               "ar": "هل تفضلين الدفع فقط عندما ينجز المساعد مهمة لك (مثلا عن كل طرد) بدل اشتراك شهري؟"},
+      "options": [
+        {"code": "per_job", "en": "Pay per job", "fr": "Payer par tâche", "ar": "الدفع عن كل مهمة"},
+        {"code": "monthly", "en": "Pay a monthly fee", "fr": "Payer un abonnement mensuel", "ar": "دفع اشتراك شهري"},
+        {"code": "unsure", "en": "I am not sure", "fr": "Je ne suis pas sûre", "ar": "لست متأكدة"}
+      ]
+    },
+    {
+      "id": "ref", "section": "H", "type": "hidden", "required": false, "assumption": [],
+      "purpose": "Referral or group code set by the survey link, never asked. Identifies the cluster (trainer, group, referrer) each respondent came through.",
+      "text": {"en": "Referral code (hidden)", "fr": "Code de parrainage (caché)", "ar": "رمز الإحالة (مخفي)"},
+      "options": []
+    },
+    {
+      "id": "price_cell", "section": "H", "type": "hidden", "required": false, "assumption": [],
+      "numeric": true,
+      "purpose": "Monthly price in DZD shown to this respondent in W2, set by the survey link. Needed so that W2 answers can be grouped by price.",
+      "text": {"en": "Price cell (hidden)", "fr": "Cellule de prix (cachée)", "ar": "فئة السعر (مخفية)"},
+      "options": []
+    }
+  ]
+}

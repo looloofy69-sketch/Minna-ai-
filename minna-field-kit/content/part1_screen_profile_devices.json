@@ -1,0 +1,141 @@
+{
+  "questions": [
+    {
+      "id": "S1", "section": "S", "type": "single", "required": true, "assumption": [],
+      "purpose": "Consent gate. A row without 'yes' is excluded from every estimate.",
+      "text": {"en": "Do you agree to take part in this survey?",
+               "fr": "Acceptez-vous de participer à cette enquête ?",
+               "ar": "هل توافقين على المشاركة في هذا الاستبيان؟"},
+      "options": [
+        {"code": "yes", "en": "Yes, I agree", "fr": "Oui, j'accepte", "ar": "نعم، أوافق"},
+        {"code": "no", "en": "No, I do not agree", "fr": "Non, je n'accepte pas", "ar": "لا، لا أوافق"}
+      ]
+    },
+    {
+      "id": "S2", "section": "S", "type": "single", "required": true, "assumption": [],
+      "purpose": "Adults only. A row without 'yes' is excluded from every estimate.",
+      "show_if": {"q": "S1", "in": ["yes"]},
+      "text": {"en": "Are you 18 or older?",
+               "fr": "Avez-vous 18 ans ou plus ?",
+               "ar": "هل عمرك 18 سنة أو أكثر؟"},
+      "options": [
+        {"code": "yes", "en": "Yes", "fr": "Oui", "ar": "نعم"},
+        {"code": "no", "en": "No", "fr": "Non", "ar": "لا"}
+      ]
+    },
+    {
+      "id": "S3", "section": "S", "type": "single", "required": true, "assumption": ["A-02", "A-03"],
+      "purpose": "Segment screen. Sellers (regular, occasional) get the orders section; planners are counted but kept apart. Feeds decision D1.",
+      "show_if": {"q": "S2", "in": ["yes"]},
+      "text": {"en": "In the last 3 months, did you earn money by selling products or services (online or in person)?",
+               "fr": "Au cours des 3 derniers mois, avez-vous gagné de l'argent en vendant des produits ou des services (en ligne ou en personne) ?",
+               "ar": "خلال الأشهر الثلاثة الأخيرة، هل حصلت على مال من بيع منتجات أو خدمات (عبر الإنترنت أو مباشرة)؟"},
+      "options": [
+        {"code": "regular", "en": "Yes, every month", "fr": "Oui, chaque mois", "ar": "نعم، كل شهر"},
+        {"code": "occasional", "en": "Yes, but not every month", "fr": "Oui, mais pas tous les mois", "ar": "نعم، لكن ليس كل شهر"},
+        {"code": "planning", "en": "No, but I plan to start within 6 months", "fr": "Non, mais je prévois de commencer dans les 6 mois", "ar": "لا، لكنني أخطط للبدء خلال 6 أشهر"},
+        {"code": "no", "en": "No, and I have no plan to", "fr": "Non, et je n'ai pas de projet dans ce sens", "ar": "لا، وليس لدي خطة لذلك"}
+      ]
+    },
+    {
+      "id": "P1", "section": "P", "type": "single", "required": false, "assumption": [],
+      "purpose": "Age band, to describe who answered (not to infer anything about them).",
+      "show_if": {"q": "S2", "in": ["yes"]},
+      "text": {"en": "What is your age group?",
+               "fr": "Quelle est votre tranche d'âge ?",
+               "ar": "ما هي فئتك العمرية؟"},
+      "options": [
+        {"code": "a18_24", "en": "18-24", "fr": "18-24", "ar": "18-24"},
+        {"code": "a25_34", "en": "25-34", "fr": "25-34", "ar": "25-34"},
+        {"code": "a35_44", "en": "35-44", "fr": "35-44", "ar": "35-44"},
+        {"code": "a45_plus", "en": "45 or older", "fr": "45 ans ou plus", "ar": "45 سنة فأكثر"},
+        {"code": "pnts", "en": "Prefer not to say", "fr": "Je préfère ne pas répondre", "ar": "أفضل عدم الإجابة"}
+      ]
+    },
+    {
+      "id": "P2", "section": "P", "type": "single", "required": false, "assumption": ["A-07"],
+      "purpose": "Locality type. Courier coverage and connectivity differ by place; the exact wilaya is deliberately not asked (re-identification risk in small cells).",
+      "show_if": {"q": "S2", "in": ["yes"]},
+      "text": {"en": "Where do you live?",
+               "fr": "Où habitez-vous ?",
+               "ar": "أين تسكنين؟"},
+      "options": [
+        {"code": "big_city", "en": "A big city", "fr": "Une grande ville", "ar": "مدينة كبيرة"},
+        {"code": "town", "en": "A small town", "fr": "Une petite ville", "ar": "مدينة صغيرة"},
+        {"code": "rural", "en": "A village or rural area", "fr": "Un village ou une zone rurale", "ar": "قرية أو منطقة ريفية"},
+        {"code": "pnts", "en": "Prefer not to say", "fr": "Je préfère ne pas répondre", "ar": "أفضل عدم الإجابة"}
+      ]
+    },
+    {
+      "id": "P3", "section": "P", "type": "single", "required": false, "assumption": ["A-01"],
+      "purpose": "How the respondent was reached. Describes the sampling channel and feeds the clustering sensitivity table; it is what makes the sample a convenience sample, visibly.",
+      "show_if": {"q": "S2", "in": ["yes"]},
+      "text": {"en": "How did you hear about this survey?",
+               "fr": "Comment avez-vous connu cette enquête ?",
+               "ar": "كيف عرفت بهذا الاستبيان؟"},
+      "options": [
+        {"code": "training", "en": "A training programme or trainer", "fr": "Une formation ou un formateur", "ar": "برنامج تدريبي أو مدرب"},
+        {"code": "social_group", "en": "A Facebook or Instagram page or group", "fr": "Une page ou un groupe Facebook ou Instagram", "ar": "صفحة أو مجموعة على فيسبوك أو إنستغرام"},
+        {"code": "chat_group", "en": "A WhatsApp or Viber group", "fr": "Un groupe WhatsApp ou Viber", "ar": "مجموعة على واتساب أو فايبر"},
+        {"code": "friend", "en": "A friend or family member", "fr": "Une amie ou un membre de ma famille", "ar": "صديقة أو فرد من العائلة"},
+        {"code": "other", "en": "Other", "fr": "Autre", "ar": "أخرى"}
+      ]
+    },
+    {
+      "id": "D1", "section": "D", "type": "single", "required": true, "assumption": ["A-06"],
+      "purpose": "Phone type. Decides whether an Android-only pilot (D2) reaches this segment.",
+      "show_if": {"q": "S2", "in": ["yes"]},
+      "text": {"en": "Which phone do you mainly use?",
+               "fr": "Quel téléphone utilisez-vous principalement ?",
+               "ar": "أي هاتف تستخدمينه بشكل أساسي؟"},
+      "options": [
+        {"code": "android", "en": "Android smartphone (Samsung / Huawei / Xiaomi / Oppo / other)", "fr": "Smartphone Android (Samsung / Huawei / Xiaomi / Oppo / autre)", "ar": "هاتف ذكي أندرويد (سامسونغ / هواوي / شاومي / أوبو / غيرها)"},
+        {"code": "iphone", "en": "iPhone", "fr": "iPhone", "ar": "آيفون"},
+        {"code": "basic", "en": "A basic phone without apps", "fr": "Un téléphone basique sans applications", "ar": "هاتف عادي بدون تطبيقات"},
+        {"code": "shared", "en": "I do not have my own phone", "fr": "Je n'ai pas de téléphone personnel", "ar": "ليس لدي هاتف خاص بي"}
+      ]
+    },
+    {
+      "id": "D2", "section": "D", "type": "single", "required": true, "assumption": ["A-01"],
+      "purpose": "Internet frequency on the phone, to describe reachability of the segment.",
+      "show_if": {"q": "S2", "in": ["yes"]},
+      "text": {"en": "How often do you use the internet on your phone?",
+               "fr": "À quelle fréquence utilisez-vous internet sur votre téléphone ?",
+               "ar": "كم مرة تستخدمين الانترنت على هاتفك؟"},
+      "options": [
+        {"code": "several_daily", "en": "Several times a day", "fr": "Plusieurs fois par jour", "ar": "عدة مرات في اليوم"},
+        {"code": "daily", "en": "About once a day", "fr": "Environ une fois par jour", "ar": "مرة واحدة تقريبا في اليوم"},
+        {"code": "weekly", "en": "A few times a week", "fr": "Quelques fois par semaine", "ar": "بضع مرات في الأسبوع"},
+        {"code": "rarely", "en": "Rarely or never", "fr": "Rarement ou jamais", "ar": "نادرا أو أبدا"}
+      ]
+    },
+    {
+      "id": "D3", "section": "D", "type": "single", "required": false, "assumption": ["A-16"],
+      "purpose": "Shared or monitored device. Decides how much the app must hide (notifications, app lock) and whether a PIN is mandatory.",
+      "show_if": {"q": "S2", "in": ["yes"]},
+      "text": {"en": "Does anyone else use your phone or read your messages?",
+               "fr": "Quelqu'un d'autre utilise-t-il votre téléphone ou lit-il vos messages ?",
+               "ar": "هل يستخدم شخص آخر هاتفك أو يقرأ رسائلك؟"},
+      "options": [
+        {"code": "never", "en": "No, never", "fr": "Non, jamais", "ar": "لا، أبدا"},
+        {"code": "sometimes", "en": "Sometimes", "fr": "Parfois", "ar": "أحيانا"},
+        {"code": "often", "en": "Often", "fr": "Souvent", "ar": "غالبا"},
+        {"code": "pnts", "en": "Prefer not to say", "fr": "Je préfère ne pas répondre", "ar": "أفضل عدم الإجابة"}
+      ]
+    },
+    {
+      "id": "D4", "section": "D", "type": "single", "required": false, "assumption": ["A-13"],
+      "purpose": "Recent disruption of messaging apps. Sizes the offline-queue requirement and tells the pilot which weeks to avoid.",
+      "show_if": {"q": "S2", "in": ["yes"]},
+      "text": {"en": "In the last month, were there days when WhatsApp, Facebook or Instagram did not work for you?",
+               "fr": "Le mois dernier, y a-t-il eu des jours où WhatsApp, Facebook ou Instagram ne fonctionnaient pas pour vous ?",
+               "ar": "خلال الشهر الأخير، هل كانت هناك أيام لم يعمل فيها واتساب أو فيسبوك أو إنستغرام معك؟"},
+      "options": [
+        {"code": "none", "en": "No", "fr": "Non", "ar": "لا"},
+        {"code": "days_1_2", "en": "Yes, 1 or 2 days", "fr": "Oui, 1 ou 2 jours", "ar": "نعم، يوم أو يومان"},
+        {"code": "days_3plus", "en": "Yes, 3 days or more", "fr": "Oui, 3 jours ou plus", "ar": "نعم، 3 أيام أو أكثر"},
+        {"code": "unknown", "en": "I do not know", "fr": "Je ne sais pas", "ar": "لا أعرف"}
+      ]
+    }
+  ]
+}

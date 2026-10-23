@@ -1,0 +1,46 @@
+name: Bootstrap source import
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "source-archives/minna-m0-corrected.zip"
+      - "source-archives/minna-field-kit.zip"
+
+permissions:
+  contents: write
+
+jobs:
+  import-source:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Verify and extract source archives
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s source-archives/minna-m0-corrected.zip
+          test -s source-archives/minna-field-kit.zip
+          unzip -t source-archives/minna-m0-corrected.zip
+          unzip -t source-archives/minna-field-kit.zip
+          tmp="${RUNNER_TEMP}/minna-source-import"
+          mkdir -p "$tmp/m0" "$tmp/field-kit"
+          unzip -q source-archives/minna-m0-corrected.zip -d "$tmp/m0"
+          unzip -q source-archives/minna-field-kit.zip -d "$tmp/field-kit"
+          test -f "$tmp/m0/minna/README.md"
+          test -f "$tmp/field-kit/minna-field-kit/README.md"
+          # Preserve archive roots exactly; avoid flattening package boundaries.
+          cp -a "$tmp/m0/minna" ./minna
+          cp -a "$tmp/field-kit/minna-field-kit" ./minna-field-kit
+          rm -rf source-archives
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No source changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: import Minna source packages"
+          git push

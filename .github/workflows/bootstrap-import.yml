@@ -4,7 +4,8 @@ on:
   push:
     branches: [main]
     paths:
-      - "source-archives/minna-source.tar.xz"
+      - "minna-source.tar.xz"
+      - ".github/workflows/bootstrap-import.yml"
 
 permissions:
   contents: write
@@ -22,7 +23,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          bundle="source-archives/minna-source.tar.xz"
+          bundle="minna-source.tar.xz"
           test -s "$bundle"
 
           # Reject absolute paths, parent traversal, and unexpected top-level roots.
@@ -53,7 +54,7 @@ jobs:
           test ! -e ./minna-field-kit
           cp -a "$tmp/minna" ./minna
           cp -a "$tmp/minna-field-kit" ./minna-field-kit
-          rm -rf source-archives
+          rm -f "$bundle"
 
           git add -A
           git config user.name "github-actions[bot]"

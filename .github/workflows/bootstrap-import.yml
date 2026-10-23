@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "source-archives/minna-source.tar.gz"
+      - "source-archives/minna-source.tar.xz"
 
 permissions:
   contents: write
@@ -20,11 +20,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test -s source-archives/minna-source.tar.gz
-          tar -tzf source-archives/minna-source.tar.gz
+          test -s source-archives/minna-source.tar.xz
+          tar -tJf source-archives/minna-source.tar.xz
           tmp="${RUNNER_TEMP}/minna-source-import"
           mkdir -p "$tmp"
-          tar -xzf source-archives/minna-source.tar.gz -C "$tmp"
+          tar -xJf source-archives/minna-source.tar.xz -C "$tmp"
           test -f "$tmp/minna/README.md"
           test -f "$tmp/minna-field-kit/README.md"
           # Preserve package roots and directory boundaries from both uploaded ZIPs.

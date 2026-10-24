@@ -275,7 +275,8 @@ class ReportRules(Files):
         self.assertIn("- Questions that appear in several columns (first non-empty used): S3", text)
         self.assertIn("- **Possible misspelled labels in C1** (counted as 'other'): 'Whatsap' looks like 'whatsapp' x1", text)
         self.assertIn("- Answers to C1 from respondents who should not have seen it: 1", text)
-        self.assertIn("1 W2 answers had no price cell and were left out.", text)
+        self.assertIn("Answers to W2 from respondents who should not have seen it: 1", text)
+        self.assertNotIn("1 W2 answers had no price cell and were left out.", text)
 
     def test_item_non_response_is_flagged_above_ten_percent_and_not_at_ten(self):
         header = ["S1", "S2", "S3", "C1"]

@@ -5,7 +5,7 @@ Source file: `synthetic_n300.csv` · respondents included: **287**
 ## Read this first
 
 - **Who the numbers describe.** Respondents reached through the channels in section 2 who chose to answer. Not Algerian women in general, and not even all women in those groups.
-- **What the intervals mean.** Exact 95% intervals for sampling noise if respondents were drawn at random from that channel. A convenience or referral sample is not; section 5 shows how much wider the honest interval can be.
+- **What the intervals mean.** Exact 95% intervals describe sampling noise under an appropriate random-sampling model. Convenience or referral recruitment introduces selection bias; section 5 is only a clustering sensitivity analysis and cannot correct selection bias.
 - **A survey sent online cannot measure who is offline.** A-01 (reach) is not testable this way; it needs a sample frame that does not depend on being online.
 - **Stated is not done.** Interest, willingness to pay and the recalled refusal rate overstate or distort behaviour. Treat them as screens. The pilot's payments and logs are the evidence.
 - **Many intervals at once.** With 37 estimates at 95% each, about 2 are expected to miss the truth by chance. Decide which numbers matter before reading them, not after.
@@ -30,12 +30,12 @@ Source file: `synthetic_n300.csv` · respondents included: **287**
 
 ## 2. Sample and precision
 
-| Group | n | Worst-case exact margin | Meets ±10 pp |
+| Group | n | Worst-case exact margin | Arithmetic target ≤ ±10 pp |
 |---|---|---|---|
 | all | 287 | ±6.0 pp | yes |
 | sellers | 218 | ±6.9 pp | yes |
 
-Planning number: 106 respondents per group for ±10 pp in the worst case with the exact interval (97 is the normal-approximation figure and is not enough). Most estimates are far from 50%, so their margins are smaller; the table below shows each one.
+Arithmetic planning number: 106 respondents per group for a worst-case ±10 pp margin with the exact interval (97 is the normal-approximation figure and is not enough). This is a sampling-precision calculation only: it does not make a convenience/referral sample representative. Most estimates are far from 50%, so their arithmetic margins are smaller; the table below shows each one.
 
 - Segment (S3): regular 134, occasional 84, planning 39, no 30
 - How reached (P3): social_group 81, training 68, chat_group 56, friend 51, other 18
@@ -87,13 +87,13 @@ WIDE = margin above 15 pp: the data cannot support a decision on that number.
 
 ## 4. Decision aids
 
-### D2: is an Android-only pilot enough?
+### D2: does an Android-only pilot reach current sellers?
 
-One-sided 95% bounds for the Android share: at least **77.0%** and at most **84.9%** (233 of 287). Threshold 80.0% (PLACEHOLDER for decision D2. The owner fixes the threshold before fielding, not after seeing the data.)
+Among current sellers only (S3 = regular or occasional), the one-sided 95% bounds for Android share are at least **77.3%** and at most **86.3%** (179 of 218). Threshold 80.0% (PLACEHOLDER for decision D2. The owner fixes the threshold before fielding, not after seeing the data.)
 
-**Treating respondents as independent: INCONCLUSIVE: the threshold lies inside the one-sided bounds.** Valid only inside this recruitment channel.
+**Treating respondents as independent: INCONCLUSIVE: the threshold lies inside the one-sided bounds.** These bounds describe sampling uncertainty under an idealised independent-sampling model; they do not correct selection bias from convenience/referral recruitment.
 
-**Allowing for clustering** (mean 28.7 respondents per referral code, assumed rho = 0.05): at least 74.7% and at most 86.3%: **INCONCLUSIVE: the threshold lies inside the one-sided bounds.** For a referral sample this is the line to use.
+**Allowing for clustering** (mean 21.8 respondents per referral code, assumed rho = 0.05): at least 75.2% and at most 87.4%: **INCONCLUSIVE: the threshold lies inside the one-sided bounds.** This is only a clustering sensitivity analysis; it does not correct selection bias from convenience/referral recruitment.
 
 ### D1: which job first?
 
@@ -109,11 +109,11 @@ Top two compared on the same respondents (exact McNemar): 60 picked only the fir
 
 Any part of the order-to-parcel flow (confirming, parcels, tracking) is a top-2 pain for 61.0% of sellers (54.2 to 67.5). The plan sets no numeric rule for wedge A; decide the rule before reading this number, and use the interviews to explain it.
 
-### Parcels refused (recall of the last 20)
+### Parcels refused (last 20 in the past 3 months)
 
 147 respondents, 1840 parcels, 259 refused: pooled **14.1%** (resampling respondents: 11.7 to 16.5). 44 respondents reported none. Recall is imperfect and the percentile interval is approximate; A-08 is settled only by pilot data.
 
-### Willingness to pay (stated, by randomly assigned price)
+### Willingness to pay (stated, by price shown; random assignment must be verified)
 
 | Price (DZD / month) | n | yes | maybe | no | Yes share | 95% interval |
 |---|---|---|---|---|---|---|

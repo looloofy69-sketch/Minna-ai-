@@ -188,4 +188,4 @@ Probant ? Chaque semaine ou plus [ ] · exemple récent concret [ ] · coût ind
 2. Remplissez la vérification « probant » et le niveau de preuve.
 3. Ajoutez l'entretien au décompte (chiffres seulement, sans noms). Tous les 5 entretiens, listez ce qui vous a surprise et ce qui contredit le plan.
 4. Ne changez pas les critères. Si vous pensez qu'ils étaient faux, écrivez-le et terminez d'abord les entretiens prévus selon les critères d'origine.
-5. À la fin, rédigez une page : le nombre d'entretiens probants sur le total, la ligne correspondante du tableau, les trois contournements les plus fréquents, tout ce qui va contre le plan, et la répartition par canal de recrutement.
+5. À la fin, rédigez une page : le nombre d'entretiens probants sur le total, les tâches et coûts concrets observés, les trois contournements les plus fréquents, les éléments contraires les plus forts et la répartition par canal de recrutement. N'interprétez pas le tableau comme une preuve de prévalence.

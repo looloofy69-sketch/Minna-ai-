@@ -10,7 +10,8 @@ The kit does not host the survey. Put the questions from `generated/` into whate
 
 | Path | What it is |
 |---|---|
-| `interview_guide_en.md`, `interview_guide_fr.md` | 30-minute guide, notes sheet, the "qualifying interview" criteria to fix in advance, and tables of what 0 to 14 (and 0 to 10) qualifying interviews prove |
+| `interview_guide_en.md`, `interview_guide_fr.md` | 30-minute guide and notes sheet; the numerical tables are explicitly marked hypothetical and are not prevalence bounds for this purposive sample |
+| `FIELDWORK_CHECKLIST.md` | A blocking checklist covering survey setup, research design, consent/privacy, analysis and fieldwork release gates |
 | `content/*.json` | The survey: questions, options in 3 languages, skip logic, and the 37 estimates. The printed survey and the analysis both read these files, so they cannot drift apart |
 | `generated/` | `survey_en.md`, `survey_fr.md`, `survey_ar.md`, `codebook.csv`, rendered from `content/` |
 | `survey_cli.py` | `plan`, `render`, `synthetic`, `analyze`, `selftest` |
@@ -31,27 +32,28 @@ python3 survey_cli.py analyze fake.csv --out report.md --estimates-csv estimates
 python3 scripts/mutate_kit.py                        # mutation check, about 12 minutes on 2 cores
 ```
 
-`analyze` takes the CSV export of any survey tool. Columns are matched by question id, by question text in any of the three languages, or by a text prefix of at least 12 characters; answers are matched by option code or by label in any language, with Arabic spelling variants and Arabic digits folded. Nothing is dropped silently: unmatched columns, unmapped answers, impossible numbers, skip-logic violations and item non-response are listed in the report before any estimate. It refuses a file with no consent (S1) and 18-or-older (S2) columns unless you pass `--assume-screened` to say both were enforced before export.
+`analyze` takes the CSV export of any survey tool. Columns are matched by question id, by question text in any of the three languages, or by a text prefix of at least 12 characters; answers are matched by option code or by label in any language, with Arabic spelling variants and Arabic digits folded. Nothing is meant to be dropped silently: the report lists unmatched columns, unmapped answers, impossible numbers, skip-logic violations and item non-response before the estimates. The pipeline excludes answers to questions that were behind a failed skip gate from the relevant estimates. It refuses a file without consent (S1) and 18-or-older (S2) columns unless you pass `--assume-screened` to confirm those screens were enforced upstream. The survey is intended for women, but the current questionnaire does not independently verify gender eligibility; the live-form setup must enforce and document it before fielding.
 
 ## 3. The numbers to plan with (all printed by `plan`)
 
 | Question | Answer | Note |
 |---|---|---|
-| Survey size for a worst-case margin of ±10 pp at 95%, exact interval | **106** | The plan said 97. That is the normal approximation; at n = 97 the exact worst case is ±10.45 pp (n = 105: ±10.03, n = 106: ±9.98). See section 6. A looser ±15 pp needs 49 |
-| Interviews needed to meet at least one woman with a trait that 20% of the channel has, with 95% probability | 14 | A 5% trait needs 59. Interviews find tasks; they do not measure how common they are |
-| What 0 qualifying of 14 proves | the true share is below 19.3% (one-sided 95%) | Only inside the recruited channels, and only if interviewees are independent |
-| Two prices, 50% vs 30% stated acceptance, 80% power, 5% two-sided, exact test | 102 respondents **per price** | The normal approximation (unpooled variance, no continuity correction) says 91. A survey sized for ±10 pp cannot also test price |
-| Two prices, 50% vs 40% | 404 per price | Printed by `plan --slow` |
-| 10 clusters of 10 (referral groups), ρ = 0.10 | the naive exact 95% interval covers 87.2% | ρ = 0.20: 79.3%. The design-effect correction gives 94.2 to 95.5% when ρ is known; it never is, so the report prints three values of ρ. Simulated, 2,000 surveys per row: about ±1 pp of simulation noise |
+| Survey size for a worst-case margin of ±10 pp at 95%, exact interval | **106** | This is a statistical precision calculation under its sampling model—not a promise of representativeness. The normal approximation gives 97; the exact worst case at n=106 is about ±9.98 pp. |
+| Interview discovery sample | 14 | The interviews are for task discovery; the detection and binomial-bound figures are hypothetical random-sample arithmetic and do not estimate prevalence under this purposive recruitment plan. |
+| Two prices, 50% vs 30% stated acceptance, 80% power, 5% two-sided, exact test | 102 respondents **per price** | The normal approximation says 91. A survey sized for ±10 pp cannot also test price. |
+| Two prices, 50% vs 40% | 404 per price | Printed by `plan --slow`. |
+| 10 clusters of 10 (referral groups), ρ = 0.10 | The naive exact 95% interval covers 87.2% | ρ = 0.20: 79.3%. Design-effect calculations are a clustering sensitivity analysis; they do not repair selection bias. |
 
 ## 4. Before fielding (people, not code)
 
-1. **Interviews first.** Price cells (placeholder 500 and 1000 DZD) and wording come from them.
-2. **Fix the Android threshold for decision D2 before fielding** (placeholder 80%). Setting it after seeing the data makes the verdict meaningless.
-3. **Fill the placeholders** in the consent and closing texts: `render` prints the list. Nothing here has been reviewed by a lawyer; consent wording and retention periods are decision D3 (Law 18-07).
-4. **Native-speaker review of the French and Arabic**, including Algerian usage, then a cognitive pretest with 5 to 8 women from the target channels. Time it: "about 10 minutes" in the consent is an estimate.
-5. **Decide recruitment.** Use at least three channels, one referral code per trainer or group in the hidden `ref` field, and read the clustering section of the report. A survey sent online cannot see who is offline (assumption A-01).
-6. **Randomise the price.** Either a hidden `price_cell` field, or one form per price whose W2 text carries the price; the loader accepts both.
+1. **Interviews first.** Use the 14 interviews to discover tasks, workarounds and costs; do not treat the count as prevalence evidence. Fix the qualitative go/no-go rubric in advance.
+2. **Fix the Android threshold for D2 before fielding** (the current 80% is a placeholder). D2 is scoped to current sellers only, but the reported bounds are conditional on a sampling model and do not correct selection bias.
+3. **Complete participant eligibility and consent setup.** The questionnaire screens for consent and age, but it does not independently verify that respondents are women. Implement and document a respectful women-only eligibility check in the platform or screener. Fill all organisation/storage/interview placeholders; the survey consent now warns that an anonymous response may not be retrievable for deletion after submission.
+4. **Review privacy and retention.** Decide storage location, access, retention, audio handling, withdrawal/deletion cutoff for interviews, and whether the form provider collects IP addresses or other metadata. Obtain appropriate local data-protection/legal review before collecting data; this repository is not legal advice.
+5. **Validate language and comprehension.** Native-speaker review of French and Arabic for Algerian usage, followed by cognitive pretesting with 5–8 target participants. Verify the claimed 10-minute survey duration.
+6. **Plan recruitment realistically.** With a maximum of three interviews per channel, 14 interviews require at least five channels. Record channel and referral codes. This is purposive discovery, not a probability sample; intervals and clustering adjustments cannot repair selection bias or make results representative of all Algerian women.
+7. **Implement random price assignment.** The generated questionnaire does not randomize participants. Configure the live form to assign each eligible seller to one price cell, record `price_cell`, and show the exact assigned price in W2. If assignment was not random, interpret the price contrast descriptively, not causally.
+8. **Preserve question order.** The concept card is rendered after behavioural and pain questions to reduce priming; do not move it back to the opening screen.
 
 ## 5. What was verified, and how
 

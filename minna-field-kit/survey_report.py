@@ -6,7 +6,7 @@ import survey_estimates as se
 
 CAVEATS = [
     "**Who the numbers describe.** Respondents reached through the channels in section 2 who chose to answer. Not Algerian women in general, and not even all women in those groups.",
-    "**What the intervals mean.** Exact 95% intervals for sampling noise if respondents were drawn at random from that channel. A convenience or referral sample is not; section 5 shows how much wider the honest interval can be.",
+    "**What the intervals mean.** Exact 95% intervals describe sampling noise under an appropriate random-sampling model. Convenience or referral recruitment introduces selection bias; section 5 is only a clustering sensitivity analysis and cannot correct selection bias.",
     "**A survey sent online cannot measure who is offline.** A-01 (reach) is not testable this way; it needs a sample frame that does not depend on being online.",
     "**Stated is not done.** Interest, willingness to pay and the recalled refusal rate overstate or distort behaviour. Treat them as screens. The pilot's payments and logs are the evidence.",
     "**Many intervals at once.** With {n_est} estimates at 95% each, about {expected_miss:.0f} are expected to miss the truth by chance. Decide which numbers matter before reading them, not after.",
@@ -69,12 +69,13 @@ def render(meta: dict, rows: list[dict], audit: dict) -> str:
     # ---- 2. sample
     chk = se.sample_check(rows, meta)
     L += ["## 2. Sample and precision", ""]
-    L += table(["Group", "n", "Worst-case exact margin", f"Meets ±{100 * d['margin_target']:.0f} pp"],
+    L += table(["Group", "n", "Worst-case exact margin", f"Arithmetic target ≤ ±{100 * d['margin_target']:.0f} pp"],
                [[g, chk[g]["n"], "n/a" if chk[g]["margin"] is None else f"±{100 * chk[g]['margin']:.1f} pp",
                  "yes" if chk[g]["meets_target"] else "**no**"] for g in ("all", "sellers")])
-    L += [f"Planning number: {d['n_min_exact']} respondents per group for ±{100 * d['margin_target']:.0f} pp "
-          f"in the worst case with the exact interval ({d['n_min_textbook']} is the normal-approximation figure and is not enough). "
-          "Most estimates are far from 50%, so their margins are smaller; the table below shows each one.", ""]
+    L += [f"Arithmetic planning number: {d['n_min_exact']} respondents per group for a worst-case ±{100 * d['margin_target']:.0f} pp "
+          f"margin with the exact interval ({d['n_min_textbook']} is the normal-approximation figure and is not enough). "
+          "This is a sampling-precision calculation only: it does not make a convenience/referral sample representative. "
+          "Most estimates are far from 50%, so their arithmetic margins are smaller; the table below shows each one.", ""]
     for qid, name in (("S3", "Segment (S3)"), ("P3", "How reached (P3)")):
         counts: dict[str, int] = {}
         for r in rows:
@@ -131,7 +132,7 @@ def render(meta: dict, rows: list[dict], audit: dict) -> str:
           f"{pct(of['p'])} of sellers ({span(of['lo'], of['hi'])}). The plan sets no numeric rule for wedge A; "
           "decide the rule before reading this number, and use the interviews to explain it.", ""]
 
-    L += ["### Parcels refused (recall of the last 20)", ""]
+    L += ["### Parcels refused (last 20 in the past 3 months)", ""]
     rf = se.refusal(rows)
     if rf:
         L += [f"{rf['respondents']} respondents, {int(rf['parcels'])} parcels, {int(rf['refused'])} refused: pooled "
@@ -141,7 +142,7 @@ def render(meta: dict, rows: list[dict], audit: dict) -> str:
     else:
         L += ["No usable pairs.", ""]
 
-    L += ["### Willingness to pay (stated, by randomly assigned price)", ""]
+    L += ["### Willingness to pay (stated, by price shown; random assignment must be verified)", ""]
     w = se.price_cells(rows)
     if w["cells"]:
         L += table(["Price (DZD / month)", "n", "yes", "maybe", "no", "Yes share", "95% interval"],
@@ -152,7 +153,7 @@ def render(meta: dict, rows: list[dict], audit: dict) -> str:
             L += [f"Lowest vs highest price, yes vs not-yes (exact Fisher): p = {w['test']['p_value']:.3f}. "
                   f"For scale: detecting a drop from 50% to 30% with 80% power needs {n_arm} respondents per price; "
                   f"you have {min(c['n'] for c in w['cells'])} in the smaller cell. "
-                  + ("A p-value above 0.05 here is not evidence of no price effect." if w["test"]["p_value"] >= 0.05
+                  + ("A p-value above 0.05 here is not evidence of no difference." if w["test"]["p_value"] >= 0.05
                      else "Stated acceptance differs between the two prices; stated is not paid.") , ""]
         if w["unpriced"]:
             L += [f"{w['unpriced']} W2 answers had no price cell and were left out.", ""]

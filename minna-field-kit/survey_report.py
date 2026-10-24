@@ -97,18 +97,24 @@ def render(meta: dict, rows: list[dict], audit: dict) -> str:
     L += [f"WIDE = margin above {100 * d['wide_margin']:.0f} pp: the data cannot support a decision on that number.", ""]
 
     # ---- 4. decision aids
-    L += ["## 4. Decision aids", "", "### D2: is an Android-only pilot enough?", ""]
-    a = se.android_decision(byid["android"], d)
+    L += ["## 4. Decision aids", "", "### D2: does an Android-only pilot reach current sellers?", ""]
+    # The pilot decision is about current sellers, not planners or other respondents.
+    android_est = next(e for e in meta["estimates"] if e["id"] == "android")
+    current_seller = lambda r: bool(r["S3"]["codes"][:1] and r["S3"]["codes"][0] in se.SELLERS)
+    seller_k, seller_n, seller_refs = se.tally(rows, android_est, current_seller)
+    seller_android = {"k": seller_k, "n": seller_n, "refs": seller_refs}
+    a = se.android_decision(seller_android, d)
     if "lower" in a:
-        L += [f"One-sided 95% bounds for the Android share: at least **{pct(a['lower'])}** and at most **{pct(a['upper'])}** "
+        L += [f"Among current sellers only (S3 = regular or occasional), the one-sided 95% bounds for Android share are "
+              f"at least **{pct(a['lower'])}** and at most **{pct(a['upper'])}** "
               f"({a['k']} of {a['n']}). Threshold {pct(a['threshold'])} ({d['android_status']})", "",
-              f"**Treating respondents as independent: {a['status']}.** Valid only inside this recruitment channel.", ""]
+              f"**Treating respondents as independent: {a['status']}.** These bounds describe sampling uncertainty under an idealised independent-sampling model; they do not correct selection bias from convenience/referral recruitment.", ""]
         if "clustered_status" in a:
             L += [f"**Allowing for clustering** (mean {a['m_bar']:.1f} respondents per referral code, assumed rho = {a['rho']}): "
                   f"at least {pct(a['clustered_lower'])} and at most {pct(a['clustered_upper'])}: "
-                  f"**{a['clustered_status']}.** For a referral sample this is the line to use.", ""]
+                  f"**{a['clustered_status']}.** This is only a clustering sensitivity analysis; it does not correct selection bias from convenience/referral recruitment.", ""]
     else:
-        L += ["No data.", ""]
+        L += ["No usable Android-phone answers from current sellers.", ""]
 
     L += ["### D1: which job first?", ""]
     pains = se.top_pains(items)

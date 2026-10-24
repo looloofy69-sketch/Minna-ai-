@@ -73,7 +73,7 @@ def write_codebook(meta: dict, questions: list[dict], path: str) -> int:
     qmap = {q["id"]: q for q in questions}
     n = 0
     with open(path, "w", newline="", encoding="utf-8-sig") as fh:
-        w = csv.writer(fh)
+        w = csv.writer(fh, lineterminator="\\n")
         w.writerow(["question_id", "section", "type", "required", "max_select", "ask_only_if",
                     "assumptions", "option_code", "label_en", "label_fr", "label_ar", "purpose"])
         for q in questions:

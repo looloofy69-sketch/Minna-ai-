@@ -221,9 +221,9 @@ This survey is run by [ORGANISATION]. We are studying whether, and how, an assis
 
 <!-- Ask only if S3 is: Yes, every month / Yes, but not every month. -->
 
-**O5a.** Think of the last 20 parcels you sent with a delivery company. If you sent fewer than 20, count all of them. How many parcels are you counting?
+**O5a.** Think of the last 20 parcels you sent with a delivery company in the last 3 months. If you sent fewer than 20 in that time, count all of them. If you sent none, enter 0. How many parcels are you counting?
 
-*Number, between 1 and 20, optional*
+*Number, between 0 and 20, optional*
 
 <!-- Ask only if O2 is: A delivery company. -->
 

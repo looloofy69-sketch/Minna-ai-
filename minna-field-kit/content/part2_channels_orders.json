@@ -125,12 +125,12 @@
     },
     {
       "id": "O5a", "section": "O", "type": "number", "required": false, "assumption": ["A-08"],
-      "purpose": "Denominator for the recalled refusal rate. Recall of the last 20 parcels is cheaper to remember than a percentage.",
+      "purpose": "Denominator for the recalled refusal rate. Use a fixed three-month recall window and allow zero parcels; zero-parcel respondents are not included in the refusal-rate denominator.",
       "show_if": {"q": "O2", "in": ["courier"]},
-      "range": [1, 20],
-      "text": {"en": "Think of the last 20 parcels you sent with a delivery company. If you sent fewer than 20, count all of them. How many parcels are you counting?",
-               "fr": "Pensez aux 20 derniers colis envoyés avec une société de livraison. Si vous en avez envoyé moins de 20, comptez-les tous. Combien de colis comptez-vous ?",
-               "ar": "فكري في آخر 20 طردا أرسلتيها مع شركة توصيل. إذا أرسلت أقل من 20 فاحسبيها كلها. كم طردا تحسبين؟"},
+      "range": [0, 20],
+      "text": {"en": "Think of the last 20 parcels you sent with a delivery company in the last 3 months. If you sent fewer than 20 in that time, count all of them. If you sent none, enter 0. How many parcels are you counting?",
+               "fr": "Pensez aux 20 derniers colis envoyés avec une société de livraison au cours des 3 derniers mois. Si vous en avez envoyé moins de 20 pendant cette période, comptez-les tous. Si vous n'en avez envoyé aucun, indiquez 0. Combien de colis comptez-vous ?",
+               "ar": "فكري في آخر 20 طردا أرسلتيها مع شركة توصيل خلال الأشهر الثلاثة الماضية. إذا أرسلت أقل من 20 خلال هذه الفترة فاحسبيها كلها. إذا لم ترسلي أي طرد، اكتبي 0. كم طردا تحسبين؟"},
       "options": []
     },
     {

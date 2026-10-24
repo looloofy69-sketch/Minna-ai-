@@ -109,6 +109,13 @@ def load_responses(path: str, questions: list[dict], assume_screened: bool = Fal
         rows.append(row)
 
     _validate(rows, qmap, audit)
+    # Preserve eligibility violations on each row so estimate functions can
+    # exclude them, not merely warn about them in the report.
+    for row in rows:
+        row["_unexpected_questions"] = {
+            qid for qid in qmap
+            if answered(row[qid]) and not is_expected(qid, row, qmap)
+        }
     audit["included"] = len(rows)
     audit["excluded"] = dict(audit["excluded"])
     audit["issues"] = dict(audit["issues"])
@@ -138,7 +145,7 @@ def _validate(rows: list[dict], qmap: dict, audit: dict) -> None:
         m2 = row["M2"]["codes"]
         if "allow_all" in m2 and len(m2) > 1:
             issues["M2: 'allow all' together with refusals (kept, contradictory)"] += 1
-        if row["W2"]["codes"] and row["_price"] is None:
+        if row["W2"]["codes"] and row["_price"] is None and is_expected("W2", row, qmap):
             issues["W2 answered but the price cell is unknown (excluded from price comparison)"] += 1
 
 

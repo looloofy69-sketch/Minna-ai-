@@ -315,7 +315,7 @@ class ReportRules(Files):
         same = ([SELLER + ["yes", "500"]] * 15 + [SELLER + ["no", "500"]] * 15
                 + [SELLER + ["yes", "1000"]] * 15 + [SELLER + ["no", "1000"]] * 15)
         text = self.report(header, same)
-        self.assertIn("A p-value above 0.05 here is not evidence of no price effect.", text)
+        self.assertIn("A p-value above 0.05 here is not evidence of no difference.", text)
         self.assertNotIn("Stated acceptance differs", text)
 
         header = ["S1", "S2", "S3", "O6"]
@@ -338,7 +338,7 @@ class ReportRules(Files):
 
     def test_the_planning_number_is_the_exact_one_and_the_textbook_one_is_called_too_small(self):
         text = self.report(["S1", "S2", "S3"], [SELLER])
-        self.assertIn("Planning number: 106 respondents per group for ±10 pp in the worst case with the exact "
+        self.assertIn("Arithmetic planning number: 106 respondents per group for a worst-case ±10 pp margin with the exact "
                       "interval (97 is the normal-approximation figure and is not enough).", text)
 
 

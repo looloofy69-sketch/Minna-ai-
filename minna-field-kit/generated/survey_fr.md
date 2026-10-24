@@ -221,9 +221,9 @@ Cette enquête est menée par [ORGANISATION]. Nous étudions si, et comment, un 
 
 <!-- Ask only if S3 is: Yes, every month / Yes, but not every month. -->
 
-**O5a.** Pensez aux 20 derniers colis envoyés avec une société de livraison. Si vous en avez envoyé moins de 20, comptez-les tous. Combien de colis comptez-vous ?
+**O5a.** Pensez aux 20 derniers colis envoyés avec une société de livraison au cours des 3 derniers mois. Si vous en avez envoyé moins de 20 pendant cette période, comptez-les tous. Si vous n'en avez envoyé aucun, indiquez 0. Combien de colis comptez-vous ?
 
-*Number, between 1 and 20, optional*
+*Number, between 0 and 20, optional*
 
 <!-- Ask only if O2 is: A delivery company. -->
 

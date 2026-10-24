@@ -30,6 +30,8 @@ def tally(rows: list[dict], est: dict, keep=None) -> tuple[int, int, list]:
     for row in rows:
         if keep is not None and not keep(row):
             continue
+        if est["q"] in row.get("_unexpected_questions", ()):
+            continue
         codes = _counted(row[est["q"]], exclude)
         if codes is None:
             continue
@@ -104,8 +106,10 @@ def price_cells(rows: list[dict]) -> dict:
     cells: dict[float, Counter] = {}
     unpriced = 0
     for row in rows:
+        if "W2" in row.get("_unexpected_questions", ()):
+            continue
         m = row["W2"]
-        if m["missing"] or not m["codes"]:
+        if m["missing"] or m.get("invalid") or not m["codes"]:
             continue
         if row["_price"] is None:
             unpriced += 1
@@ -130,7 +134,9 @@ def price_cells(rows: list[dict]) -> dict:
 def refusal(rows: list[dict]) -> dict | None:
     """Pooled share of recalled parcels that were refused, resampling respondents."""
     pairs = [(r["O5b"]["number"], r["O5a"]["number"]) for r in rows
-             if r["O5a"]["number"] is not None and r["O5b"]["number"] is not None]
+             if not ({"O5a", "O5b"} & r.get("_unexpected_questions", set()))
+             and not r["O5a"].get("invalid") and not r["O5b"].get("invalid")
+             and r["O5a"]["number"] is not None and r["O5b"]["number"] is not None]
     pairs = [(b, a) for b, a in pairs if a > 0]
     if not pairs:
         return None
@@ -144,6 +150,8 @@ def pick2_test(rows: list[dict], a: str, b: str) -> dict:
     """Do equally many respondents pick task a and task b? Exact McNemar on O6."""
     only_a = only_b = both = 0
     for row in rows:
+        if "O6" in row.get("_unexpected_questions", ()):
+            continue
         codes = _counted(row["O6"], set())
         if codes is None:
             continue

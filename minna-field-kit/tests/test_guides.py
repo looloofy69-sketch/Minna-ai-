@@ -38,15 +38,18 @@ class GuideNumbers(unittest.TestCase):
     def test_french_tables_equal_the_computed_bounds(self):
         self.check(read("interview_guide_fr.md"), "sur", ",")
 
-    def test_the_prose_claims_are_true(self):
-        self.assertLess(ms.cp_upper_one_sided(0, 14), 0.20)                 # 0 of 14 rules out 20% or more
-        self.assertGreaterEqual(ms.prob_detect(0.20, 14), 0.95)             # 14 interviews see a 20% task
-        self.assertEqual(ms.n_to_detect(0.05), 59)                          # 5% would take 59
-        self.assertAlmostEqual(3 / 14, 0.214, places=3)                     # "about 21%"
-        self.assertEqual(META["design"]["n_min_exact"], 106)                # survey size quoted in both guides
-        for name in ("interview_guide_en.md", "interview_guide_fr.md"):
-            text = read(name)
-            for needle in ("106", "59", "20", "14"):
+    def test_prose_does_not_treat_discovery_interviews_as_prevalence(self):
+        self.assertEqual(META["design"]["n_min_exact"], 106)
+        en = read("interview_guide_en.md")
+        fr = read("interview_guide_fr.md")
+        self.assertIn("5** distinct channels", en)
+        self.assertIn("5 canaux distincts", fr)
+        self.assertIn("not valid prevalence estimates for this recruitment protocol", en)
+        self.assertIn("pas des estimations de prévalence valides pour ce recrutement", fr)
+        self.assertIn("not estimate prevalence", en)
+        self.assertIn("pas pour estimer leur prévalence", fr)
+        for name, text in (("interview_guide_en.md", en), ("interview_guide_fr.md", fr)):
+            for needle in ("106", "20", "14"):
                 self.assertIn(needle, text, name)
 
     def test_both_guides_have_the_same_sections_and_placeholders(self):

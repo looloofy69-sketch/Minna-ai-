@@ -1,6 +1,6 @@
 # Enquête : téléphones, canaux et commandes pour les femmes qui vendent
 
-> **DRAFT, do not field yet.** Fill in: [CONTACT], [INTERVIEW LINK], [LIEN ENTRETIEN], [ORGANISATION], [OÙ], [WHERE], [المؤسسة], [جهة الاتصال], [رابط المقابلة], [مكان الحفظ]. Price cells are placeholders (500, 1000 DZD). This translation needs native-speaker review and a pretest. Version 0.1, language: Français.
+> **DRAFT, do not field yet.** Fill in: [INTERVIEW LINK], [LIEN ENTRETIEN], [ORGANISATION], [OÙ], [WHERE], [المؤسسة], [رابط المقابلة], [مكان الحفظ]. Price cells are placeholders (500, 1000 DZD). This translation needs native-speaker review and a pretest. Version 0.1, language: Français.
 
 ## Consent
 

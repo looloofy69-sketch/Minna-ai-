@@ -223,9 +223,9 @@
 
 <!-- Ask only if S3 is: Yes, every month / Yes, but not every month. -->
 
-**O5a.** فكري في آخر 20 طردا أرسلتيها مع شركة توصيل. إذا أرسلت أقل من 20 فاحسبيها كلها. كم طردا تحسبين؟
+**O5a.** فكري في آخر 20 طردا أرسلتيها مع شركة توصيل خلال الأشهر الثلاثة الماضية. إذا أرسلت أقل من 20 خلال هذه الفترة فاحسبيها كلها. إذا لم ترسلي أي طرد، اكتبي 0. كم طردا تحسبين؟
 
-*Number, between 1 and 20, optional*
+*Number, between 0 and 20, optional*
 
 <!-- Ask only if O2 is: A delivery company. -->
 

@@ -231,7 +231,7 @@ class BadData(unittest.TestCase):
                                              "not confirmed 18 or older (S2 not yes)": 1})
         self.assertEqual(audit["issues"], {
             "O5b greater than O5a (both ignored)": 1,
-            "O5a: number outside 1-20": 1,
+            "O5a: number outside 0-20": 1,
             "O6: more than 2 choices (answer ignored)": 1,
             "M2: 'allow all' together with refusals (kept, contradictory)": 1})
         refusal = se.refusal(rows)

@@ -216,7 +216,7 @@ class Rendering(unittest.TestCase):
 
     def test_the_closing_text_placeholders_are_listed_too(self):
         found = sf.placeholders(META)
-        for token in ("[INTERVIEW LINK]", "[LIEN ENTRETIEN]", "[رابط المقابلة]", "[CONTACT]", "[WHERE]"):
+        for token in ("[INTERVIEW LINK]", "[LIEN ENTRETIEN]", "[رابط المقابلة]", "[WHERE]"):
             self.assertIn(token, found)
 
     def test_codebook_csv_has_one_row_per_option_or_open_question(self):

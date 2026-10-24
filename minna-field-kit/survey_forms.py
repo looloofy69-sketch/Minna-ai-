@@ -40,11 +40,15 @@ def render_survey(meta: dict, questions: list[dict], lang: str) -> str:
          f"({', '.join(str(p) for p in meta['design']['price_cells_dzd'])} DZD). "
          + ("" if lang == "en" else "This translation needs native-speaker review and a pretest. ")
          + f"Version {meta['version']}, language: {LANG_NAMES[lang]}.", "",
-         "## Consent", "", meta["consent"][lang], "", "## The idea", "", meta["concept_card"][lang], ""]
+         "## Consent", "", meta["consent"][lang], ""]
     section = None
     for q in questions:
         if q["section"] != section:
             section = q["section"]
+            # Behavioural questions (including the task-pain ranking) must come
+            # before the concept card to reduce solution-priming effects.
+            if section == "M":
+                L += ["## The idea", "", meta["concept_card"][lang], ""]
             L += [f"## {meta['sections'][section][lang]}", ""]
         L += [f"**{q['id']}.** {q['text'][lang]}", ""]
         L += [f"*{TYPES[q['type']]}" + (f", at most {q['max_select']}" if q.get("max_select") else "")

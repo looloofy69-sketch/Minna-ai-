@@ -188,4 +188,4 @@ Also note: tasks she would not hand over; what she would check before approving;
 2. Fill in the qualifying check and the evidence level.
 3. Add the interview to the tally (counts only, no names). After every 5 interviews, list what surprised you and what contradicted the plan.
 4. Do not change the criteria. If you think they were wrong, write that down and finish the planned interviews under the original criteria first.
-5. At the end, write one page: the count of qualifying interviews of the total, the matching row of the table, the three most common workarounds, anything that argues against the plan, and the recruitment channel breakdown.
+5. At the end, write one page: the count of qualifying interviews out of the total, the concrete tasks and costs observed, the three most common workarounds, the strongest counter-evidence, and the recruitment channel breakdown. Do not interpret the table as prevalence evidence.

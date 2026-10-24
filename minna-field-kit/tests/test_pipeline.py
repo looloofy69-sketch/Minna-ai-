@@ -274,7 +274,7 @@ class Reports(unittest.TestCase):
         _, rows, audit = generate_and_load(7, n=300)
         text = sr.render(META, rows, audit)
         for needle in ("Read this first", "1. Data quality", "2. Sample and precision", "3. Estimates",
-                       "D2: is an Android-only pilot enough?", "D1: which job first?", "exact McNemar",
+                       "D2: does an Android-only pilot reach current sellers?", "D1: which job first?", "exact McNemar",
                        "Willingness to pay", "exact Fisher", "5. If respondents came in clusters",
                        "Allowing for clustering", "6. Sellers"):
             self.assertIn(needle, text)
@@ -283,6 +283,32 @@ class Reports(unittest.TestCase):
         android = next(i for i in se.headline(rows, META) if i["id"] == "android")
         self.assertIn(f"{android['k']} / {android['n']}", text)
         self.assertIn(f"respondents included: **{audit['included']}**", text)
+
+    def test_android_pilot_decision_uses_current_sellers_not_planners(self):
+        with tempfile.TemporaryDirectory() as d:
+            path = os.path.join(d, "r.csv")
+            write_csv(path, ["S1", "S2", "S3", "D1"], [
+                ["yes", "yes", "regular", "android"],
+                ["yes", "yes", "occasional", "iphone"],
+                ["yes", "yes", "planning", "android"],
+            ])
+            rows, audit = sd.load_responses(path, QUESTIONS)
+            text = sr.render(META, rows, audit)
+        self.assertIn("Among current sellers only (S3 = regular or occasional)", text)
+        self.assertIn("(1 of 2)", text)
+        self.assertNotIn("(2 of 3). Threshold", text)
+
+    def test_answers_to_questions_behind_a_skip_gate_do_not_enter_estimates(self):
+        with tempfile.TemporaryDirectory() as d:
+            path = os.path.join(d, "r.csv")
+            write_csv(path, ["S1", "S2", "S3", "C1"], [
+                ["yes", "yes", "regular", "whatsapp"],
+                ["yes", "yes", "planning", "whatsapp"],
+            ])
+            rows, audit = sd.load_responses(path, QUESTIONS)
+        item = next(i for i in se.headline(rows, META) if i["id"] == "whatsapp_any")
+        self.assertEqual((item["k"], item["n"]), (1, 1))
+        self.assertEqual(audit["questions"]["C1"]["unexpected_answers"], 1)
 
     def test_tiny_and_empty_datasets_render_without_crashing(self):
         with tempfile.TemporaryDirectory() as d:

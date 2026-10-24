@@ -6,12 +6,12 @@ Fait partie de la piste P. Aucun logiciel ne remplace cette étape : c'est ici q
 
 | Décision | Valeur par défaut proposée | Qui décide |
 |---|---|---|
-| Nombre d'entretiens | 14 (0 sur 14 écarterait une tâche partagée par 20 % ou plus ; voir section 8) | responsable du projet |
+| Nombre d'entretiens | 14 pour découvrir les tâches, pas pour estimer leur prévalence ; la section 8 ne donne que des calculs binomiaux hypothétiques | responsable du projet |
 | Ce qu'est un entretien **probant** | La personne décrit une tâche qu'elle fait **au moins une fois par semaine**, donne un **exemple récent et concret**, indique un **coût** (minutes, argent perdu, clientes perdues, erreurs) et la tâche entre dans le **périmètre de la v1** (lire, rédiger, créer un colis, consulter un statut, avec approbation ; aucun mouvement d'argent ; aucun conseil juridique, de santé ou de sécurité) | responsable du projet |
-| Seuil de « feu vert » (combien d'entretiens probants pour passer à M2) | Non fixé par ce kit : lisez le tableau de la section 8 et choisissez un nombre dont la **borne inférieure** justifierait d'agir | responsable du projet |
-| Recrutement | Au moins 3 canaux différents (programme de formation, groupe sur les réseaux sociaux, entourage personnel, clientes d'une société de livraison...) et **au plus 3 entretiens par canal**, donc aucun canal au-delà de 3 sur 14 (environ 21 %) | responsable de la recherche |
+| Seuil de « feu vert » (combien d'entretiens probants pour passer à M2) | Non fixé par ce kit : fixer la règle avant les entretiens, à partir de tâches répétées, coûteuses et dans le périmètre, ainsi que des éléments contraires crédibles — pas à partir d'une borne de prévalence | responsable du projet |
+| Recrutement | Au moins **5 canaux distincts** (formation, groupe social, entourage, clientes d'un service de livraison, marché local ou association) et **au plus 3 entretiens par canal**, donc aucun canal au-delà de 3 sur 14 (environ 21 %) | responsable de la recherche |
 
-Les chiffres de la section 8 supposent que les personnes interrogées sont indépendantes les unes des autres. Les recommandations en chaîne brisent cette hypothèse. Notez le canal de chaque entretien et ne tenez tout résultat pour vrai que « dans ces canaux ».
+Le recrutement est raisonné et plafonné par canal : ces entretiens ne constituent donc pas un échantillon probabiliste. Notez le canal et la chaîne de recommandation pour chaque entretien. N'interprétez pas le tableau de la section 8 comme un intervalle de confiance pour ces participantes, les canaux recrutés ou les femmes en Algérie. Utilisez les entretiens pour découvrir et documenter des tâches, pas pour en estimer la prévalence.
 
 ## 1. Règles pour la personne qui mène l'entretien
 
@@ -33,7 +33,7 @@ Les chiffres de la section 8 supposent que les personnes interrogées sont indé
 
 Dites, avec vos propres mots :
 
-> Merci de votre temps. Je travaille avec [ORGANISATION]. Nous étudions comment les femmes qui vendent utilisent leur téléphone pour les commandes et la livraison, afin de décider si un assistant sur téléphone serait utile et comment il devrait fonctionner. Ce n'est pas une visite commerciale et rien n'est vendu. L'entretien dure environ 30 minutes. Vous pouvez passer n'importe quelle question et arrêter à tout moment. Je ne demanderai ni votre nom ni les coordonnées de vos clients. Je prends des notes sans votre nom, seulement avec un numéro d'entretien. Puis-je aussi enregistrer le son ? Vous pouvez refuser et nous continuons avec des notes seulement. Si vous acceptez, l'enregistrement est conservé [OÙ / COMBIEN DE TEMPS] et utilisé uniquement pour cette étude. Vous pouvez demander la suppression de vos réponses à tout moment via [CONTACT]. Acceptez-vous de participer ?
+> Merci de votre temps. Je travaille avec [ORGANISATION]. Nous étudions comment les femmes qui vendent utilisent leur téléphone pour les commandes et la livraison, afin de décider si un assistant sur téléphone serait utile et comment il devrait fonctionner. Ce n'est pas une visite commerciale et rien n'est vendu. L'entretien dure environ 30 minutes. Vous pouvez passer n'importe quelle question et arrêter à tout moment. Je ne demanderai ni votre nom ni les coordonnées de vos clients. Je prends des notes sans votre nom, seulement avec un numéro d'entretien. Puis-je aussi enregistrer le son ? Vous pouvez refuser et nous continuons avec des notes seulement. Si vous acceptez, l'enregistrement est conservé [OÙ / COMBIEN DE TEMPS] et utilisé uniquement pour cette étude. Vous pouvez demander la suppression des notes ou de l'enregistrement associés à votre numéro d'entretien jusqu'au [DATE LIMITE DE RETRAIT], en contactant [CONTACT]. Après cette date, si les résultats ont été agrégés et le lien supprimé, il se peut que nous ne puissions plus retrouver les données individuelles. Acceptez-vous de participer ?
 
 Cochez dans les notes : accepte de participer [ ] · accepte l'enregistrement [ ]. Si elle a moins de 18 ans, remerciez-la et arrêtez. La formulation du consentement et la durée de conservation sont à faire valider par l'avocat en protection des données (décision D3).
 
@@ -96,9 +96,9 @@ Ne demandez pas « l'utiliseriez-vous ? » et ne demandez pas de prix ici. Si el
 
 ## 8. Ce que les comptages peuvent et ne peuvent pas prouver
 
-Ne comptez que les entretiens **probants** (section 0). Le tableau donne des bornes unilatérales à 95 % sur la part des femmes de vos canaux de recrutement qui ont une telle tâche. Elles ne tiennent que si les personnes interrogées sont indépendantes et si les critères ont été fixés à l'avance. Calcul : `python3 survey_cli.py plan` ; vérifié par les tests du kit.
+Ne comptez que les entretiens **probants** (section 0). Les tableaux ci-dessous sont des valeurs mathématiques de référence sous un modèle hypothétique d'échantillonnage aléatoire indépendant. Ce ne sont **pas des estimations de prévalence ni des intervalles valides pour ce recrutement raisonné**. Calcul : `python3 survey_cli.py plan` ; vérifié par les tests du kit.
 
-| Probants sur 14 | Au moins (unilatéral 95 %) | Au plus (unilatéral 95 %) |
+| Probants sur 14 | Borne inférieure hypothétique* | Borne supérieure hypothétique* |
 |---|---|---|
 | 0 sur 14 | 0,0 % | 19,3 % |
 | 1 sur 14 | 0,4 % | 29,7 % |
@@ -118,7 +118,7 @@ Ne comptez que les entretiens **probants** (section 0). Le tableau donne des bor
 
 Si vous vous arrêtez à 10 entretiens :
 
-| Probants sur 10 | Au moins (unilatéral 95 %) | Au plus (unilatéral 95 %) |
+| Probants sur 10 | Borne inférieure hypothétique* | Borne supérieure hypothétique* |
 |---|---|---|
 | 0 sur 10 | 0,0 % | 25,9 % |
 | 1 sur 10 | 0,5 % | 39,4 % |
@@ -132,11 +132,12 @@ Si vous vous arrêtez à 10 entretiens :
 | 9 sur 10 | 60,6 % | 99,5 % |
 | 10 sur 10 | 74,1 % | 100,0 % |
 
-Comment lire :
-- Les entretiens **trouvent** des tâches ; ils ne mesurent pas leur fréquence. Avec 14 entretiens, vous verrez presque sûrement toute tâche partagée par 20 % ou plus (probabilité d'au moins 95 %), et vous ne verrez pas de façon fiable une tâche partagée par 5 % (il en faudrait 59).
-- 0 sur 14 signifie que la vraie part est inférieure à 19,3 % (95 %). C'est la condition d'arrêt du plan pour ce segment.
-- Même 14 sur 14 ne prouve que « au moins 80,7 % ». N'écrivez jamais « la plupart des femmes » à partir de cela.
-- Quatorze est un échantillon de **découverte**. Pour mesurer la fréquence, utilisez l'enquête (n d'au moins 106 pour une marge de 10 points dans le pire cas).
+*Ces bornes sont des valeurs mathématiques de référence sous le modèle hypothétique d'un échantillon aléatoire ; elles ne sont **pas des estimations de prévalence valides pour ce recrutement**.
+
+Comment utiliser les entretiens :
+- Ils servent à découvrir des tâches et à vérifier si le problème est concret, récurrent, coûteux et dans le périmètre du produit. Ils n'établissent pas sa fréquence.
+- N'utilisez pas 0 sur 14, 14 sur 14, ni un autre décompte, comme borne de prévalence ou condition d'arrêt automatique. Notez les observations, les éléments contraires et les canaux manquants.
+- Quatorze est un échantillon de **découverte**. Le calcul de précision n=106 suppose aussi un modèle d'échantillonnage approprié ; il ne rend pas un échantillon de convenance représentatif. Utilisez les résultats comme données descriptives des canaux recrutés, sauf si le plan d'échantillonnage autorise une inférence plus large.
 
 ## 9. Fiche de notes (une par entretien, sans nom)
 

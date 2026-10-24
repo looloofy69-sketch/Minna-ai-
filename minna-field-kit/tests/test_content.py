@@ -179,7 +179,7 @@ class DesignNumbers(unittest.TestCase):
 
 class Rendering(unittest.TestCase):
     def test_placeholders_are_present_in_every_language_so_none_can_be_forgotten(self):
-        for key, want in (("consent", 3), ("closing", 1)):
+        for key, want in (("consent", 2), ("closing", 1)):
             for lang in LANGS:
                 self.assertEqual(len(sf.PLACEHOLDER.findall(META[key][lang])), want, (key, lang))
         self.assertTrue(sf.placeholders(META))
@@ -193,6 +193,11 @@ class Rendering(unittest.TestCase):
                 for o in q.get("options", []):
                     self.assertIn(o[lang], text, (lang, q["id"], o["code"]))
             self.assertEqual(text.startswith('<div dir="rtl">'), lang == "ar")
+
+    def test_concept_card_follows_behavioural_and_pain_questions(self):
+        text = sf.render_survey(META, QUESTIONS, "en")
+        self.assertLess(text.index("**O6.**"), text.index("## The idea"))
+        self.assertLess(text.index("## The idea"), text.index("**M1.**"))
 
     def test_optional_questions_are_marked_optional_and_required_ones_are_not(self):
         text = sf.render_survey(META, QUESTIONS, "en")

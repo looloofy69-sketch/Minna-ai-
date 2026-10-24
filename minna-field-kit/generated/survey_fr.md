@@ -4,11 +4,7 @@
 
 ## Consent
 
-Cette enquête est menée par [ORGANISATION]. Nous étudions si, et comment, un assistant sur téléphone pourrait aider les femmes qui vendent des produits ou des services. Elle dure environ 10 minutes. La participation est volontaire et vous pouvez arrêter à tout moment. Nous ne demandons ni votre nom, ni votre numéro de téléphone, ni votre pièce d'identité, ni vos coordonnées bancaires. Vos réponses sont conservées sur [OÙ] et utilisées uniquement pour cette étude. Les résultats sont présentés sous forme de totaux, jamais sur une personne en particulier. Vous pouvez demander la suppression de vos réponses à tout moment en contactant [CONTACT]. Cette enquête s'adresse aux femmes de 18 ans ou plus.
-
-## The idea
-
-L'idée : un assistant sur votre téléphone. Vous lui dites ce dont vous avez besoin, par exemple « envoie cette commande à la société de livraison ». Il prépare l'action et vous la montre. Rien n'est envoyé ni créé tant que vous n'avez pas approuvé. Il ne déplace pas d'argent. C'est une idée que nous étudions ; elle n'est pas encore disponible.
+Cette enquête est menée par [ORGANISATION]. Nous étudions si, et comment, un assistant sur téléphone pourrait aider les femmes qui vendent des produits ou des services. Elle dure environ 10 minutes. La participation est volontaire ; vous pouvez arrêter avant d'envoyer vos réponses. Nous ne demandons ni votre nom, ni votre numéro de téléphone, ni votre pièce d'identité, ni vos coordonnées bancaires. N'inscrivez aucun nom, numéro de téléphone ou adresse dans une réponse « autre ». Vos réponses sont conservées sur [OÙ] et utilisées uniquement pour cette étude. Les résultats sont présentés sous forme de totaux, jamais sur une personne en particulier. Comme nous ne recueillons pas vos coordonnées, nous ne pourrons peut-être pas retrouver et supprimer une réponse individuelle après son envoi. Cette enquête s'adresse aux femmes de 18 ans ou plus.
 
 ## Consentement et sélection
 
@@ -251,6 +247,10 @@ L'idée : un assistant sur votre téléphone. Vous lui dites ce dont vous avez b
 - [ ] Autre
 
 <!-- Ask only if S3 is: Yes, every month / Yes, but not every month. -->
+
+## The idea
+
+L'idée : un assistant sur votre téléphone. Vous lui dites ce dont vous avez besoin, par exemple « envoie cette commande à la société de livraison ». Il prépare l'action et vous la montre. Rien n'est envoyé ni créé tant que vous n'avez pas approuvé. Il ne déplace pas d'argent. C'est une idée que nous étudions ; elle n'est pas encore disponible.
 
 ## L'idée de l'assistant
 

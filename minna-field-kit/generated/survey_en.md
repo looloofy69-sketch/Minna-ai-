@@ -4,11 +4,7 @@
 
 ## Consent
 
-This survey is run by [ORGANISATION]. We are studying whether, and how, an assistant on the phone could help women who sell products or services. It takes about 10 minutes. Taking part is voluntary and you can stop at any time. We do not ask for your name, phone number, ID or bank details. Your answers are stored on [WHERE] and used only for this study. Results are reported as totals, never about one person. You can ask us to delete your answers at any time by contacting [CONTACT]. This survey is for women aged 18 or over.
-
-## The idea
-
-The idea: an assistant on your phone. You tell it what you need, for example 'send this order to the delivery company'. It prepares the action and shows it to you. Nothing is sent or created until you approve it. It does not move money. This is an idea we are studying; it is not available yet.
+This survey is run by [ORGANISATION]. We are studying whether, and how, an assistant on the phone could help women who sell products or services. It takes about 10 minutes. Taking part is voluntary; you may stop before submitting. We do not ask for your name, phone number, ID or bank details. Please do not enter names, phone numbers or addresses in any 'other' answer. Your answers are stored on [WHERE] and used only for this study. Results are reported as totals, never about one person. Because we do not collect your contact details, we may not be able to find and delete an individual response after submission. This survey is for women aged 18 or over.
 
 ## Consent and screening
 
@@ -251,6 +247,10 @@ The idea: an assistant on your phone. You tell it what you need, for example 'se
 - [ ] Other
 
 <!-- Ask only if S3 is: Yes, every month / Yes, but not every month. -->
+
+## The idea
+
+The idea: an assistant on your phone. You tell it what you need, for example 'send this order to the delivery company'. It prepares the action and shows it to you. Nothing is sent or created until you approve it. It does not move money. This is an idea we are studying; it is not available yet.
 
 ## The assistant idea
 

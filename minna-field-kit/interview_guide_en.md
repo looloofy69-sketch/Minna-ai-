@@ -6,12 +6,12 @@ Part of Track P. Software cannot replace this step: it is where the plan's first
 
 | Decision | Default proposed here | Who decides |
 |---|---|---|
-| Number of interviews | 14 (0 of 14 would rule out a task shared by 20% or more; see section 8) | project owner |
+| Number of interviews | 14 for structured task discovery, not prevalence estimation; section 8 gives hypothetical binomial arithmetic only | project owner |
 | What counts as a **qualifying** interview | The interviewee describes a task she does **at least weekly**, gives a **concrete recent example**, states a **cost** (minutes, money lost, customers lost, errors) and the task is **inside v1 scope** (read, draft, create a parcel, look up status, with approval; no money movement; no legal, health or safety advice) | project owner |
-| "Go" threshold (how many qualifying interviews to continue to M2) | Not set by this kit: read the table in section 8 and choose a count whose **lower bound** you would act on | project owner |
-| Recruitment | At least 3 different channels (training programme, social media group, personal network, a courier's customers...) and **at most 3 interviews per channel**, so no channel exceeds 3 of 14 (about 21%) | research lead |
+| "Go" threshold (how many qualifying interviews to continue to M2) | Not set by this kit: fix a decision rule before interviewing, based on evidence of repeated, costly, in-scope tasks and credible counter-evidence—not on a prevalence confidence bound | project owner |
+| Recruitment | At least **5** distinct channels (training programme, social group, personal network, courier customers, local market or association) and **at most 3 interviews per channel**, so no channel exceeds 3 of 14 (about 21%) | research lead |
 
-The numbers in section 8 assume interviewees are independent of each other. Referral chains break that. Record the channel of every interview, and treat any result as true "inside these channels" only.
+Because recruitment is purposive and capped by channel, these interviews do not form a probability sample. Record channel and referral chain for every interview. Do not interpret the section 8 table as a confidence interval for these participants, the recruited channels, or women in Algeria. Use the interviews to discover and document tasks, not to estimate prevalence.
 
 ## 1. Rules for the interviewer
 
@@ -33,7 +33,7 @@ The numbers in section 8 assume interviewees are independent of each other. Refe
 
 Say, in your own words:
 
-> Thank you for your time. I work with [ORGANISATION]. We are studying how women who sell use their phones for orders and delivery, to decide whether a phone assistant would be useful and how it should work. This is not a sales visit and nothing is being sold. The conversation takes about 30 minutes. You can skip any question and stop at any time. I will not ask for your name or for your customers' details. I take notes without your name, only an interview number. May I also record the audio? You can say no and we continue with notes only. If you agree, the recording is kept [WHERE / HOW LONG] and used only for this study. You can ask me to delete your answers at any time through [CONTACT]. Do you agree to take part?
+> Thank you for your time. I work with [ORGANISATION]. We are studying how women who sell use their phones for orders and delivery, to decide whether a phone assistant would be useful and how it should work. This is not a sales visit and nothing is being sold. The conversation takes about 30 minutes. You can skip any question and stop at any time. I will not ask for your name or for your customers' details. I take notes without your name, only an interview number. May I also record the audio? You can say no and we continue with notes only. If you agree, the recording is kept [WHERE / HOW LONG] and used only for this study. You can ask us to delete the notes or recording associated with your interview number until [WITHDRAWAL DEADLINE] by contacting [CONTACT]. After that, if findings have been aggregated and the link removed, we may no longer be able to locate individual records. Do you agree to take part?
 
 Tick in the notes: agreed to take part [ ] · agreed to audio [ ]. If she is under 18, thank her and stop. The wording of the consent and the retention period are for the data-protection lawyer to confirm (decision D3).
 
@@ -96,9 +96,9 @@ Do not ask "would you use it?" and do not ask for a price here. If she names a p
 
 ## 8. What the counts can and cannot prove
 
-Count only **qualifying** interviews (section 0). The table gives one-sided 95% bounds on the share of women in your recruited channels who have such a task. They hold only if interviewees are independent and the criteria were fixed in advance. Computed with `python3 survey_cli.py plan`; checked by the kit's tests.
+Count only **qualifying** interviews (section 0). The tables below are mathematical reference values under a hypothetical independent random-sample model. They are **not valid prevalence estimates or confidence bounds for this purposive recruitment protocol**. Computed with `python3 survey_cli.py plan`; checked by the kit's tests.
 
-| Qualifying of 14 | At least (one-sided 95%) | At most (one-sided 95%) |
+| Qualifying of 14 | Hypothetical lower bound* | Hypothetical upper bound* |
 |---|---|---|
 | 0 of 14 | 0.0% | 19.3% |
 | 1 of 14 | 0.4% | 29.7% |
@@ -118,7 +118,7 @@ Count only **qualifying** interviews (section 0). The table gives one-sided 95% 
 
 If you stop at 10 interviews:
 
-| Qualifying of 10 | At least (one-sided 95%) | At most (one-sided 95%) |
+| Qualifying of 10 | Hypothetical lower bound* | Hypothetical upper bound* |
 |---|---|---|
 | 0 of 10 | 0.0% | 25.9% |
 | 1 of 10 | 0.5% | 39.4% |
@@ -132,11 +132,12 @@ If you stop at 10 interviews:
 | 9 of 10 | 60.6% | 99.5% |
 | 10 of 10 | 74.1% | 100.0% |
 
-How to read it:
-- Interviews find tasks; they do not measure how common they are. With 14 interviews you will almost surely see any task shared by 20% or more (probability at least 95%), and you will not reliably see one shared by 5% (that would take 59).
-- 0 of 14 means the true share is below 19.3% (95%). That is the plan's stop condition for this segment.
-- Even 14 of 14 proves only "at least 80.7%". Never write "most women" from this.
-- Fourteen is a **discovery** sample. Use the survey (n of at least 106 for a worst-case margin of 10 points) to size how common something is.
+*These bounds are mathematical reference values under the hypothetical random-sample model; they are **not valid prevalence estimates for this recruitment protocol**.
+
+How to use the interviews:
+- Interviews discover tasks and test whether a problem is concrete, recurring, costly and inside the planned product scope. They do not establish how common it is.
+- Do not use 0 of 14, 14 of 14, or any other count as a population prevalence bound or automatic stop condition. Record what was observed, what contradicted the hypothesis, and which channels were missing.
+- Fourteen is a **discovery** sample. The survey's n=106 precision calculation also assumes an appropriate sampling model; it cannot make a convenience sample representative. Use survey results as channel-specific descriptive evidence unless the sampling design justifies a wider inference.
 
 ## 9. Notes sheet (one per interview, no names)
 

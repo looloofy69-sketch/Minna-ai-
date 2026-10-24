@@ -47,7 +47,7 @@ class GuideNumbers(unittest.TestCase):
         self.assertIn("not valid prevalence estimates for this recruitment protocol", en)
         self.assertIn("pas des estimations de prévalence valides pour ce recrutement", fr)
         self.assertIn("not to estimate prevalence", en)
-        self.assertIn("pas pour estimer leur prévalence", fr)
+        self.assertIn("pas pour en estimer la prévalence", fr)
         for name, text in (("interview_guide_en.md", en), ("interview_guide_fr.md", fr)):
             for needle in ("106", "20", "14"):
                 self.assertIn(needle, text, name)
